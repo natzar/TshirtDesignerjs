@@ -1,0 +1,89 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment http://php-font-lib.googlecode.com/
+EncodingScheme FontSpecific
+Copyright By Jakob Fischer aka PizzaDude - Distribute freely!
+FontName JustAnotherFont
+FontSubfamily Regular
+UniqueID webfont
+FullName JustAnotherFont Regular
+Version http://hjem.get2net.dk/jfischer/
+PostScriptName JustAnotherFont
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 20
+UnderlinePosition -133
+FontHeightOffset 0
+Ascender 800
+Descender -200
+FontBBox -20 -260 1784 824
+StartCharMetrics 69
+U 32 ; WX 500 ; N space ; G 3
+U 65 ; WX 795 ; N A ; G 4
+U 66 ; WX 790 ; N B ; G 5
+U 67 ; WX 743 ; N C ; G 6
+U 68 ; WX 793 ; N D ; G 7
+U 69 ; WX 793 ; N E ; G 8
+U 70 ; WX 614 ; N F ; G 9
+U 71 ; WX 668 ; N G ; G 10
+U 72 ; WX 763 ; N H ; G 11
+U 73 ; WX 333 ; N I ; G 12
+U 74 ; WX 405 ; N J ; G 13
+U 75 ; WX 805 ; N K ; G 14
+U 76 ; WX 311 ; N L ; G 15
+U 77 ; WX 1224 ; N M ; G 16
+U 78 ; WX 798 ; N N ; G 17
+U 79 ; WX 763 ; N O ; G 18
+U 80 ; WX 815 ; N P ; G 19
+U 81 ; WX 780 ; N Q ; G 20
+U 82 ; WX 584 ; N R ; G 21
+U 83 ; WX 678 ; N S ; G 22
+U 84 ; WX 544 ; N T ; G 23
+U 85 ; WX 773 ; N U ; G 24
+U 86 ; WX 763 ; N V ; G 25
+U 87 ; WX 1247 ; N W ; G 26
+U 88 ; WX 805 ; N X ; G 27
+U 89 ; WX 795 ; N Y ; G 28
+U 90 ; WX 673 ; N Z ; G 29
+U 97 ; WX 795 ; N a ; G 30
+U 98 ; WX 790 ; N b ; G 31
+U 99 ; WX 743 ; N c ; G 32
+U 100 ; WX 793 ; N d ; G 33
+U 101 ; WX 793 ; N e ; G 34
+U 102 ; WX 614 ; N f ; G 35
+U 103 ; WX 668 ; N g ; G 36
+U 104 ; WX 763 ; N h ; G 37
+U 105 ; WX 333 ; N i ; G 38
+U 106 ; WX 405 ; N j ; G 39
+U 107 ; WX 805 ; N k ; G 40
+U 108 ; WX 311 ; N l ; G 41
+U 109 ; WX 1224 ; N m ; G 42
+U 110 ; WX 798 ; N n ; G 43
+U 111 ; WX 763 ; N o ; G 44
+U 112 ; WX 815 ; N p ; G 45
+U 113 ; WX 780 ; N q ; G 46
+U 114 ; WX 584 ; N r ; G 47
+U 115 ; WX 678 ; N s ; G 48
+U 116 ; WX 544 ; N t ; G 49
+U 117 ; WX 773 ; N u ; G 50
+U 118 ; WX 763 ; N v ; G 51
+U 119 ; WX 1247 ; N w ; G 52
+U 120 ; WX 805 ; N x ; G 53
+U 121 ; WX 795 ; N y ; G 54
+U 122 ; WX 673 ; N z ; G 55
+U 160 ; WX 500 ; N uni00A0 ; G 56
+U 170 ; WX 795 ; N ordfeminine ; G 57
+U 186 ; WX 763 ; N ordmasculine ; G 58
+U 338 ; WX 1556 ; N OE ; G 59
+U 339 ; WX 1556 ; N oe ; G 60
+U 8211 ; WX 500 ; N endash ; G 61
+U 8212 ; WX 1000 ; N emdash ; G 62
+U 8482 ; WX 1768 ; N trademark ; G 63
+U 57344 ; WX 570 ; N uniE000 ; G 64
+U 64257 ; WX 947 ; N uniFB01 ; G 65
+U 64258 ; WX 925 ; N uniFB02 ; G 66
+U 64259 ; WX 1561 ; N uniFB03 ; G 67
+U 64260 ; WX 1539 ; N uniFB04 ; G 68
+EndCharMetrics
+EndFontMetrics

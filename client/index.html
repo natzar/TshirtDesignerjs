@@ -1,0 +1,138 @@
+<!-- /*
+
+Product Customization Web Application v1.0
+(c) 2005-2006 Beto López, Php Ninja Software http://www.phpninja.info
+
+Licensed under the CC-GNU LGPL, version 2.1 or later:
+http://creativecommons.org/licenses/LGPL/2.1/
+This is distributed WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+*/
+-->
+
+<html>
+	<head>
+		<title>tShirtCustomTool 1.</title>
+		<link href="css/master.css" rel="stylesheet" type="text/css" />
+		<link href="data/fonts/stylesheet.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="admin/resources/css/style.css" type="text/css" media="screen" />	
+		<!-- <link rel="stylesheet" href="admin/resources/css/invalid.css" type="text/css" media="screen" />	 -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- 		Commom Librarys -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script src="js/img.batchloader.js"></script>
+		<script src="js/AFU/ajaxfileupload.js"></script>
+		<script src="js/dragresize.js"></script>
+ 		<script src="js/json2.js"></script>
+<!-- 		Interface load -->
+		<script src="js/interface.load.js"></script>
+
+		 <script src="js/functions.js"></script>
+	</head>
+	<body >
+
+
+		<div id="tshirtTool">
+			<div id="loading" class="loading">Loading ...</div>
+			<div id="menu">
+				<div id="menu_productos" class="button">Seleccionar Producto</div>
+				<div id="menu_diseno" class="button">Seleccionar Diseño</div>
+				<div  id="menu_texto" class="button">Texto</div>
+				<div id="menu_foto" class="button">Cargar Foto</div>
+			</div>
+			<div id="products" class="subwindow rounded-corners">
+				<h2>Selecciona Producto</h2><div class="button close">x</div>
+				<div class="subwindow_content">
+				<select id="comboCategoria" onChange="loadcomboSubcategoria(this);" name="categoria"></select>
+				<select id="comboSubCategoria" onChange="refreshProducts(this);" name="subcategoria"> </select>
+				<hr>
+				<div id="productThumbs"></div>
+				<hr>
+				<div id="productsNavigator"></div>
+			</div>
+		</div>
+		<div id="designs" class="subwindow rounded-corners" style="display:none;">		<h2>Selecciona Diseño</h2><div class="button close">x</div>
+		</div>
+
+		<div id="custom">
+			<img id="productImage" src="">
+			
+		</div>
+		<div id="uploadImage" class="subwindow rounded-corners" style="display:none;">
+			<h2>Upload Image</h2><div class="button close">x</div>
+			<div class="subwindow_content">
+				<form name="form" action="" method="POST" enctype="multipart/form-data">
+					<input id="fileToUpload" type="file" size="20" name="fileToUpload" class="input"><br><br>
+					<button class="button" id="buttonUpload" onclick="return ajaxFileUpload();">Upload</button>
+				</form> 
+			</div>
+		</div>	
+		<div id="textOptions" class="subwindow rounded-corners">
+				<a class="button" href="javascript:createTextBox()">New Textbox</a>
+<!-- 			<h2>Text Options</h2><div class="button close">x</div> -->
+			<div class="subwindow_content">
+
+				<div class="button2 color_box" style="background:red;"></div>
+				<div class="button2 color_box" style="background:yellow;"></div>
+				<div class="button2 color_box" style="background:blue;"></div>
+				<div class="button2 color_box" style="background:white;"></div>
+				<div class="button2 color_box" style="background:green;"></div>
+				<div class="button2 color_box" style="background:black;"></div>
+				<br>
+				<select name="fontfamily" onChange="setFontFamily(this);" id="fontfamily" style="width:100px;">
+					<option value="arial">Arial</option>
+					<option value="verdana">Verdana</option>
+					<option value="tahoma">Tahoma</option>
+					<option value="Courier New">Courier</option>
+					<option value="Helvetica">Helvetica</option>
+					<option value="AllerRegular">AllerRegular</option>
+					<option value="BallparkWeiner">BallparkWeiner</option>
+					<option value="BebasRegular">BebasRegular</option>	
+					<option value="CaptureitRegular">CaptureitRegular</option>
+					<option value="Captureit2Regular">Captureit2Regular</option>
+					<option value="ChunkFiveRoman">ChunkFiveRoman</option>
+					<option value="DenneFreakshowRegular">DenneFreakshowRegular</option>
+					<option value="DistrictThin">DistrictThin</option>
+					<option value="FragmentCoreRoman">FragmentCoreRoman</option>
+				</select>
+				<div class="button option" id="bold_button" style="font-weight:bold;">B</div><div class="button option" id="italic_button" style="font-style:italic;">I</div>
+				<br>
+				<select name="fontsize" onchange="setFontSize(this);" id="fontsize"></select><br>
+				<br>
+				<div class="button" id="leftalign"><img width="21" src="img/left_ico.png"></div> 		
+				<div id="centeralign" class="button"><img width="21" src="img/centrado_ico.png"></div> 		
+				<div id="rightalign" class="button"><img width="21" src="img/right_ico.png"></div>
+			</div>
+		</div>
+
+		<div id="checkout" class="subwindow rounded-corners">
+			<div class="subwindow_content">
+				<div id="front_img" class="productView"></div>
+				<div id="back_img" class="productView">
+			</div>
+			<br><br>
+			<img src="img/colores.png">		
+			<hr>
+			<div class="button talla"><a href="javascript:setTalla('S');">S</a></div>
+			<div class="button talla"><a href="javascript:setTalla('M');">M</a></div> 		
+			<div class="button talla"><a href="javascript:setTalla('L');">L</a></div> 		
+			<div class="button talla"><a href="javascript:setTalla('XL');">XL</a></div>
+			<br>
+			<hr>
+			Cantidad: <select><option value="categoria">1</option></select><br>
+			<hr>
+			<div id="precio"> 0 € </div> <button class="button" id="button_comprar">Comprar</button>
+		</div>
+	</div>
+</div>	
+
+
+
+Custom t-Shirt Tool 1.0<br>
+www.phpninja.info
+<script src="js/interface.functions.js" type="text/javascript"></script>
+
+</body>
+</html>

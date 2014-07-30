@@ -1,0 +1,122 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment http://php-font-lib.googlecode.com/
+EncodingScheme FontSpecific
+Copyright Loveless
+FontName Ballpark
+FontSubfamily Weiner
+UniqueID webfont
+FullName Ballpark Weiner
+Version Macromedia Fontographer 4.1 10/6/00
+PostScriptName BallparkWeiner
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 18
+UnderlinePosition -121
+FontHeightOffset 0
+Ascender 799
+Descender -201
+FontBBox -261 -271 1448 759
+StartCharMetrics 101
+U 32 ; WX 227 ; N space ; G 3
+U 33 ; WX 229 ; N exclam ; G 4
+U 34 ; WX 359 ; N quotedbl ; G 5
+U 38 ; WX 718 ; N ampersand ; G 6
+U 39 ; WX 198 ; N quotesingle ; G 7
+U 44 ; WX 177 ; N comma ; G 8
+U 45 ; WX 279 ; N hyphen ; G 9
+U 46 ; WX 188 ; N period ; G 10
+U 48 ; WX 452 ; N zero ; G 11
+U 49 ; WX 198 ; N one ; G 12
+U 50 ; WX 487 ; N two ; G 13
+U 51 ; WX 460 ; N three ; G 14
+U 52 ; WX 452 ; N four ; G 15
+U 53 ; WX 443 ; N five ; G 16
+U 54 ; WX 417 ; N six ; G 17
+U 55 ; WX 248 ; N seven ; G 18
+U 56 ; WX 389 ; N eight ; G 19
+U 57 ; WX 433 ; N nine ; G 20
+U 58 ; WX 177 ; N colon ; G 21
+U 59 ; WX 177 ; N semicolon ; G 22
+U 63 ; WX 229 ; N question ; G 23
+U 65 ; WX 830 ; N A ; G 24
+U 66 ; WX 844 ; N B ; G 25
+U 67 ; WX 582 ; N C ; G 26
+U 68 ; WX 868 ; N D ; G 27
+U 69 ; WX 531 ; N E ; G 28
+U 70 ; WX 658 ; N F ; G 29
+U 71 ; WX 612 ; N G ; G 30
+U 72 ; WX 824 ; N H ; G 31
+U 73 ; WX 534 ; N I ; G 32
+U 74 ; WX 555 ; N J ; G 33
+U 75 ; WX 837 ; N K ; G 34
+U 76 ; WX 712 ; N L ; G 35
+U 77 ; WX 856 ; N M ; G 36
+U 78 ; WX 617 ; N N ; G 37
+U 79 ; WX 586 ; N O ; G 38
+U 80 ; WX 757 ; N P ; G 39
+U 81 ; WX 588 ; N Q ; G 40
+U 82 ; WX 826 ; N R ; G 41
+U 83 ; WX 567 ; N S ; G 42
+U 84 ; WX 561 ; N T ; G 43
+U 85 ; WX 595 ; N U ; G 44
+U 86 ; WX 458 ; N V ; G 45
+U 87 ; WX 803 ; N W ; G 46
+U 88 ; WX 783 ; N X ; G 47
+U 89 ; WX 615 ; N Y ; G 48
+U 90 ; WX 594 ; N Z ; G 49
+U 97 ; WX 479 ; N a ; G 50
+U 98 ; WX 434 ; N b ; G 51
+U 99 ; WX 361 ; N c ; G 52
+U 100 ; WX 467 ; N d ; G 53
+U 101 ; WX 368 ; N e ; G 54
+U 102 ; WX 354 ; N f ; G 55
+U 103 ; WX 474 ; N g ; G 56
+U 104 ; WX 524 ; N h ; G 57
+U 105 ; WX 279 ; N i ; G 58
+U 106 ; WX 280 ; N j ; G 59
+U 107 ; WX 480 ; N k ; G 60
+U 108 ; WX 288 ; N l ; G 61
+U 109 ; WX 713 ; N m ; G 62
+U 110 ; WX 502 ; N n ; G 63
+U 111 ; WX 394 ; N o ; G 64
+U 112 ; WX 495 ; N p ; G 65
+U 113 ; WX 463 ; N q ; G 66
+U 114 ; WX 343 ; N r ; G 67
+U 115 ; WX 335 ; N s ; G 68
+U 116 ; WX 317 ; N t ; G 69
+U 117 ; WX 515 ; N u ; G 70
+U 118 ; WX 445 ; N v ; G 71
+U 119 ; WX 582 ; N w ; G 72
+U 120 ; WX 436 ; N x ; G 73
+U 121 ; WX 422 ; N y ; G 74
+U 122 ; WX 381 ; N z ; G 75
+U 160 ; WX 227 ; N uni00A0 ; G 76
+U 170 ; WX 479 ; N ordfeminine ; G 77
+U 173 ; WX 279 ; N uni00AD ; G 78
+U 178 ; WX 487 ; N uni00B2 ; G 79
+U 179 ; WX 460 ; N uni00B3 ; G 80
+U 183 ; WX 218 ; N uni2219 ; G 81
+U 185 ; WX 198 ; N uni00B9 ; G 82
+U 186 ; WX 394 ; N ordmasculine ; G 83
+U 197 ; WX 683 ; N Aring ; G 84
+U 338 ; WX 1117 ; N OE ; G 85
+U 339 ; WX 762 ; N oe ; G 86
+U 8211 ; WX 500 ; N endash ; G 87
+U 8212 ; WX 1000 ; N emdash ; G 88
+U 8216 ; WX 166 ; N quoteleft ; G 89
+U 8217 ; WX 201 ; N quoteright ; G 90
+U 8220 ; WX 359 ; N quotedblleft ; G 91
+U 8221 ; WX 359 ; N quotedblright ; G 92
+U 8226 ; WX 229 ; N bullet ; G 93
+U 8230 ; WX 563 ; N ellipsis ; G 94
+U 8482 ; WX 1417 ; N trademark ; G 95
+U 8729 ; WX 218 ; N uni2219 ; G 81
+U 57344 ; WX 447 ; N uniE000 ; G 96
+U 64257 ; WX 633 ; N uniFB01 ; G 97
+U 64258 ; WX 642 ; N uniFB02 ; G 98
+U 64259 ; WX 987 ; N uniFB03 ; G 99
+U 64260 ; WX 996 ; N uniFB04 ; G 100
+EndCharMetrics
+EndFontMetrics

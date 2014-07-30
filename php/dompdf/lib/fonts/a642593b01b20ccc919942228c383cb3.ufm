@@ -1,0 +1,148 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment http://php-font-lib.googlecode.com/
+EncodingScheme FontSpecific
+Copyright Copyright (c) Andrew Paglinawan, 2008. All rights reserved.
+FontName Quicksand
+FontSubfamily Dash
+UniqueID webfont
+FullName Quicksand Dash
+Version 001.000
+PostScriptName QuicksandDash-Regular
+Weight Medium
+ItalicAngle 0
+IsFixedPitch false
+UnderlineThickness 50
+UnderlinePosition -75
+FontHeightOffset 0
+Ascender 800
+Descender -200
+FontBBox -37 -217 1351 834
+StartCharMetrics 127
+U 32 ; WX 300 ; N space ; G 3
+U 33 ; WX 252 ; N exclam ; G 4
+U 34 ; WX 410 ; N quotedbl ; G 5
+U 35 ; WX 700 ; N numbersign ; G 6
+U 36 ; WX 632 ; N dollar ; G 7
+U 38 ; WX 696 ; N ampersand ; G 8
+U 39 ; WX 230 ; N quotesingle ; G 9
+U 40 ; WX 430 ; N parenleft ; G 10
+U 41 ; WX 430 ; N parenright ; G 11
+U 42 ; WX 430 ; N asterisk ; G 12
+U 43 ; WX 620 ; N plus ; G 13
+U 44 ; WX 230 ; N comma ; G 14
+U 45 ; WX 408 ; N hyphen ; G 15
+U 46 ; WX 230 ; N period ; G 16
+U 47 ; WX 422 ; N slash ; G 17
+U 48 ; WX 710 ; N zero ; G 18
+U 49 ; WX 335 ; N one ; G 19
+U 50 ; WX 590 ; N two ; G 20
+U 51 ; WX 610 ; N three ; G 21
+U 52 ; WX 664 ; N four ; G 22
+U 53 ; WX 605 ; N five ; G 23
+U 54 ; WX 642 ; N six ; G 24
+U 55 ; WX 587 ; N seven ; G 25
+U 56 ; WX 630 ; N eight ; G 26
+U 57 ; WX 642 ; N nine ; G 27
+U 58 ; WX 240 ; N colon ; G 28
+U 59 ; WX 240 ; N uni037E ; G 29
+U 60 ; WX 620 ; N less ; G 30
+U 61 ; WX 620 ; N equal ; G 31
+U 62 ; WX 620 ; N greater ; G 32
+U 63 ; WX 534 ; N question ; G 33
+U 64 ; WX 980 ; N at ; G 34
+U 65 ; WX 646 ; N A ; G 35
+U 66 ; WX 594 ; N B ; G 36
+U 67 ; WX 771 ; N C ; G 37
+U 68 ; WX 719 ; N D ; G 38
+U 69 ; WX 593 ; N E ; G 39
+U 70 ; WX 605 ; N F ; G 40
+U 71 ; WX 814 ; N G ; G 41
+U 72 ; WX 709 ; N H ; G 42
+U 73 ; WX 305 ; N I ; G 43
+U 74 ; WX 594 ; N J ; G 44
+U 75 ; WX 715 ; N K ; G 45
+U 76 ; WX 563 ; N L ; G 46
+U 77 ; WX 844 ; N M ; G 47
+U 78 ; WX 771 ; N N ; G 48
+U 79 ; WX 850 ; N O ; G 49
+U 80 ; WX 583 ; N P ; G 50
+U 81 ; WX 844 ; N Q ; G 51
+U 82 ; WX 625 ; N R ; G 52
+U 83 ; WX 667 ; N S ; G 53
+U 84 ; WX 648 ; N T ; G 54
+U 85 ; WX 814 ; N U ; G 55
+U 86 ; WX 750 ; N V ; G 56
+U 87 ; WX 1102 ; N W ; G 57
+U 88 ; WX 722 ; N X ; G 58
+U 89 ; WX 604 ; N Y ; G 59
+U 90 ; WX 667 ; N Z ; G 60
+U 91 ; WX 430 ; N bracketleft ; G 61
+U 92 ; WX 448 ; N backslash ; G 62
+U 93 ; WX 430 ; N bracketright ; G 63
+U 95 ; WX 600 ; N underscore ; G 64
+U 97 ; WX 619 ; N a ; G 65
+U 98 ; WX 660 ; N b ; G 66
+U 99 ; WX 571 ; N c ; G 67
+U 100 ; WX 660 ; N d ; G 68
+U 101 ; WX 609 ; N e ; G 69
+U 102 ; WX 362 ; N f ; G 70
+U 103 ; WX 660 ; N g ; G 71
+U 104 ; WX 613 ; N h ; G 72
+U 105 ; WX 281 ; N i ; G 73
+U 106 ; WX 249 ; N j ; G 74
+U 107 ; WX 560 ; N k ; G 75
+U 108 ; WX 249 ; N l ; G 76
+U 109 ; WX 951 ; N m ; G 77
+U 110 ; WX 613 ; N n ; G 78
+U 111 ; WX 625 ; N o ; G 79
+U 112 ; WX 660 ; N p ; G 80
+U 113 ; WX 660 ; N q ; G 81
+U 114 ; WX 439 ; N r ; G 82
+U 115 ; WX 492 ; N s ; G 83
+U 116 ; WX 400 ; N t ; G 84
+U 117 ; WX 613 ; N u ; G 85
+U 118 ; WX 582 ; N v ; G 86
+U 119 ; WX 861 ; N w ; G 87
+U 120 ; WX 570 ; N x ; G 88
+U 121 ; WX 588 ; N y ; G 89
+U 122 ; WX 554 ; N z ; G 90
+U 123 ; WX 480 ; N braceleft ; G 91
+U 124 ; WX 286 ; N bar ; G 92
+U 125 ; WX 480 ; N braceright ; G 93
+U 126 ; WX 460 ; N asciitilde ; G 94
+U 160 ; WX 300 ; N uni00A0 ; G 95
+U 170 ; WX 619 ; N ordfeminine ; G 96
+U 173 ; WX 408 ; N uni00AD ; G 97
+U 178 ; WX 590 ; N uni00B2 ; G 98
+U 179 ; WX 610 ; N uni00B3 ; G 99
+U 185 ; WX 335 ; N uni00B9 ; G 100
+U 186 ; WX 625 ; N ordmasculine ; G 101
+U 195 ; WX 646 ; N Atilde ; G 102
+U 209 ; WX 771 ; N Ntilde ; G 103
+U 213 ; WX 850 ; N Otilde ; G 104
+U 227 ; WX 619 ; N atilde ; G 105
+U 241 ; WX 613 ; N ntilde ; G 106
+U 245 ; WX 625 ; N otilde ; G 107
+U 338 ; WX 1443 ; N OE ; G 108
+U 339 ; WX 1234 ; N oe ; G 109
+U 732 ; WX 500 ; N tilde ; G 110
+U 894 ; WX 240 ; N uni037E ; G 29
+U 8211 ; WX 500 ; N endash ; G 111
+U 8212 ; WX 1000 ; N emdash ; G 112
+U 8216 ; WX 230 ; N quoteleft ; G 113
+U 8217 ; WX 230 ; N quoteright ; G 114
+U 8218 ; WX 230 ; N quotesinglbase ; G 115
+U 8220 ; WX 410 ; N quotedblleft ; G 116
+U 8221 ; WX 410 ; N quotedblright ; G 117
+U 8230 ; WX 690 ; N ellipsis ; G 118
+U 8249 ; WX 620 ; N guilsinglleft ; G 119
+U 8250 ; WX 620 ; N guilsinglright ; G 120
+U 8482 ; WX 1492 ; N trademark ; G 121
+U 57344 ; WX 490 ; N uniE000 ; G 122
+U 64257 ; WX 643 ; N uniFB01 ; G 123
+U 64258 ; WX 611 ; N uniFB02 ; G 124
+U 64259 ; WX 1005 ; N uniFB03 ; G 125
+U 64260 ; WX 973 ; N uniFB04 ; G 126
+EndCharMetrics
+EndFontMetrics

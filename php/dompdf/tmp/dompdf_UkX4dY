@@ -1,0 +1,8 @@
+<html>
+<head>	<base href="http://www.phpninja.info/tshirts/"></base>		<link href="customAPP/data/fonts/stylesheet.css" rel="stylesheet" type="text/css" />		<link href="customAPP/css/bootstrap.css" rel="stylesheet" type="text/css" />		<link href="customAPP/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />		<link href="customAPP/css/master.css" rel="stylesheet" type="text/css" />			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body>
+						<img id="productImage" onmousedown="this.focus();if (event.preventDefault) event.preventDefault();this.focus();" src="customAPP/data/img/delante2.png">
+						<div id="front_img" style="display:none;" class="vistaproduct btn btn-primary"><i class="icon-arrow-left icon-white"></i> Delante</div>
+						<div id="back_img" class="vistaproduct btn btn-primary"><i class="icon-arrow-right icon-white"></i> Detrás</div>
+
+
+					<div id="custom_text_front_0" style="top:100px;left:150px;" class="drsElement objectText ui-resizable ui-resizable-autohide ui-draggable">	<div class="drsMoveHandle"><i class="icon-move icon-sign"></i> &nbsp;</div><div class="drsTrashHandle"><i class="icon-remove icon-sign"></i> &nbsp;</div><div class="drsRotateHandle ui-draggable"><i class="icon-repeat icon-sign"></i></div><textarea class="text" style="font-size: 40px; overflow-x: hidden; word-wrap: break-word; overflow-y: hidden; max-height: 90px; min-height: 90px; height: 90px; ">Kustom!</textarea><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 1000; display: none; "></div></div></body></html>
