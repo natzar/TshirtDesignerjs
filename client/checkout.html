@@ -1,0 +1,64 @@
+	<div id="envio-pedido-container"  class="row">
+		
+		<div class="span3">
+		<div class="well">
+			<h2>Dirección de Envío</h2>				
+			
+			
+				<form name="formdatosenvio" >
+				<fieldset>
+
+            <div class="control-group">
+          <label class="control-label" for="inputIcon">Email address</label>
+          <div class="controls">
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-envelope"></i></span><input	 name="email"  value="beto@hf.com" required="required" type="text" class="span2"> 
+            </div>
+          </div>
+        </div>
+				
+		
+				
+
+				Nombre<br><input  name="nombre"  required="required"	type="text"><br>
+				Apellidos<br><input  name="apellidos"  required="required"	type="text"><br>
+		
+				Dirección<br><input	 name="direccion" required="required"	type="text"><br>
+				<input	 name="direccion2"	type="text"><br>
+				CP<br><input name="cp" 	 required="required"	type="text"><br>
+				Ciudad<br><input  name="ciudad"  required="required"		type="text"><br>
+				Provincia<br><input	 name="provincia"  required="required"	type="text"><br>
+				País<br><input	 name="provincia"  required="required"	type="text"><br>
+				</fieldset>
+				</form>
+				</div>
+
+		
+		</div>
+		
+		<div class="span3">
+		<div class="well">
+		<h2>Forma de pago</h2>
+				
+					<div id="precio_final"></div><br>
+					<small>Impuestos y gastos de envío incluídos</small>
+			<br><br><br>
+				<b>TARJETA DE CRÉDITO</b><br>
+				<img width="177" src="customAPP/img/payment.jpeg"><br><br>
+				<a class="btn btn-primary" href="javascript:confirmar_compra_contrarembolso();">Proceder al pago</a>
+				<br>
+				<br>
+				<b>TRANSFERÉNCIA</b><br>
+					Recibirás un mail con las instrucciones para realizar el pago.<br>
+				<a href="javascript:confirmar_compra_contrarembolso();" class="btn btn-primary">Confima el pedido</a>		
+				<br><br>
+
+				<b>CONTRA REEMBOLSO</b><br>
+				Pagas cuando te llegue a casa<br>
+<br>
+				<a href="javascript:confirmar_compra_contrarembolso();" class="btn btn-primary">Confima el pedido</a>
+				</form>
+
+		</div>
+		
+	</div>
