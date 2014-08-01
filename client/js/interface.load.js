@@ -63,7 +63,7 @@ $(document).ready(function(){
 	
 	loading();	
 	
-	$.get("customAPP/php/controller.php", { "op": "start" },
+	$.get("../php/controller.php", { "op": "start" },
    			function(data){
      			
      			//console.log(data); //  2pm
