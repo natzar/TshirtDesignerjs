@@ -6,8 +6,8 @@ An UI for "designing" t-shirts. Select t-shirt, add text, add an image and custo
 
 ## Install
 
-Run composer install
+To install PDF Support, Run "composer install". You'll need composer installed to install tshirtCustomizer dependencies
 
-You'll need composer installed to install tshirtCustomizer dependencies
 
-[https://github.com/natzar/tshirtCustomizer/blob/master/screenshot.png]
+
+[Screenshot](https://github.com/natzar/tshirtCustomizer/blob/master/screenshot.png)
