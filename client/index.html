@@ -56,7 +56,7 @@
 			</div>
 			<div class="span6" style="text-align:center;">
 				<div id="custom" >
-					<img id="productImage" onmousedown="this.focus();if (event.preventDefault) event.preventDefault();this.focus();" src="">
+					<img id="productImage"  src="">
 					<div id="front_img" style="display:none;" class="vistaproduct btn btn-primary" ><i class="icon-arrow-left icon-white"></i> Delante</div>
 					<div id="back_img"  class="vistaproduct btn btn-primary" ><i class="icon-arrow-right icon-white"></i> Detrás</div>
 	
@@ -74,7 +74,7 @@
 						* Si dispones de la imagen vectorizada, ponte en contacto con nosotros.<br>
 						<form name="form2" action="" method="POST" enctype="multipart/form-data">
 						<input id="fileToUpload" type="file" size="20" name="fileToUpload" class="input"><br><br>
-						<btn class="btn btn-primary" id="btnUpload" onclick="return ajaxFileUploadBut();"><i class="icon-white icon-picture"></i> Upload</btn>
+						<btn class="btn btn-primary" id="btnUpload"><i class="icon-white icon-picture"></i> Upload</btn>
 						</form> 
 					</div>
 				</div>				
@@ -86,44 +86,41 @@
   <button class="btn dropdown-toggle" style="height:28px" data-toggle="dropdown">
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
-	<div class="btn color_box" style="background:red;">&nbsp;</div>
-						<div class="btn color_box" style="background:yellow;">&nbsp;</div>
-						<div class="btn color_box" style="background:blue;">&nbsp;</div>
-						<div class="btn color_box" style="background:white;">&nbsp;</div>
-						<div class="btn color_box" style="background:green;">&nbsp;</div>
-						<div class="btn color_box" style="background:black;">&nbsp;</div>
-						<div class="btn color_box" style="background:brown;">&nbsp;</div>
-						<div class="btn color_box" style="background:pink;">&nbsp;</div>
-						<div class="btn color_box" style="background:gray;">&nbsp;</div>
-						<div class="btn color_box" style="background:fucsia;">&nbsp;</div>
-						<div class="btn color_box" style="background:maroon;">&nbsp;</div>
-						<div class="btn color_box" style="background:black;">&nbsp;</div>
-
-  </ul>
-  
+  	<ul class="dropdown-menu">
+		<div class="btn color_box" style="background:red;">&nbsp;</div>
+		<div class="btn color_box" style="background:yellow;">&nbsp;</div>
+		<div class="btn color_box" style="background:blue;">&nbsp;</div>
+		<div class="btn color_box" style="background:white;">&nbsp;</div>
+		<div class="btn color_box" style="background:green;">&nbsp;</div>
+		<div class="btn color_box" style="background:black;">&nbsp;</div>
+		<div class="btn color_box" style="background:brown;">&nbsp;</div>
+		<div class="btn color_box" style="background:pink;">&nbsp;</div>
+		<div class="btn color_box" style="background:gray;">&nbsp;</div>
+		<div class="btn color_box" style="background:fucsia;">&nbsp;</div>
+		<div class="btn color_box" style="background:maroon;">&nbsp;</div>
+		<div class="btn color_box" style="background:black;">&nbsp;</div>
+	</ul>		
 </div>
-<br>
-
-						<select name="fontfamily" onChange="setFontFamily(this);" id="fontfamily" style="">
-						<option value="Arial">Arial</option>
-						<option value="Verdana">Verdana</option>
-						<option value="Tahoma">Tahoma</option>
-						<option value="Courier New">Courier</option>
-						<option value="Helvetica">Helvetica</option>
-						<option value="AllerRegular">AllerRegular</option>
-						<option value="BallparkWeiner">BallparkWeiner</option>
-						<option value="BebasRegular">BebasRegular</option>	
-						<option value="CaptureitRegular">CaptureitRegular</option>
-						<option value="Captureit2Regular">Captureit2Regular</option>
-						<option value="ChunkFiveRoman">ChunkFiveRoman</option>
-						<option value="DenneFreakshowRegular">DenneFreakshowRegular</option>
-						<option value="DistrictThin">DistrictThin</option>
-						<option value="FragmentCoreRoman">FragmentCoreRoman</option>
-						</select>
+<br>	
+		<select name="fontfamily"  id="fontfamily" style="">
+			<option value="Arial">Arial</option>
+			<option value="Verdana">Verdana</option>
+			<option value="Tahoma">Tahoma</option>
+			<option value="Courier New">Courier</option>
+			<option value="Helvetica">Helvetica</option>
+			<option value="AllerRegular">AllerRegular</option>
+			<option value="BallparkWeiner">BallparkWeiner</option>
+			<option value="BebasRegular">BebasRegular</option>	
+			<option value="CaptureitRegular">CaptureitRegular</option>
+			<option value="Captureit2Regular">Captureit2Regular</option>
+			<option value="ChunkFiveRoman">ChunkFiveRoman</option>
+			<option value="DenneFreakshowRegular">DenneFreakshowRegular</option>
+			<option value="DistrictThin">DistrictThin</option>
+			<option value="FragmentCoreRoman">FragmentCoreRoman</option>
+		</select>
 						
 
-						<select style="width:100px;" name="fontsize" onchange="setFontSize(this);" id="fontsize"></select>
+						<select style="width:100px;" name="fontsize"  id="fontsize"></select>
 						<div class="btn-group" style="display:inline-block;vertical-align:baseline;">
 							<div class="btn option" id="bold_btn" style="font-weight:bold;"><i class="icon-bold"></i></div>
 							<div class="btn option" id="italic_btn" style="font-style:italic;"><i class="icon-italic"></i></div>
@@ -134,15 +131,7 @@
 				          <a class="btn" id="centeralign" href="#"><i class="icon-align-center"></i></a>
 				          <a class="btn" id="rightalign" href="#"><i class="icon-align-right"></i></a>
 <!-- 				          <a class="btn" href="#"><i class="icon-align-justify"></i></a> -->
-				        </div>
-
-				        		
-
-
-
-					
-				
-				
+				        </div>		
 						</div>
 					</div>
 					<div id="checkout" class="well">
@@ -197,7 +186,7 @@
 <hr>
 <div class="row">
 <div class="span12">
-&copy; Beto López</div>
+&copy; Beto Ayesa</div>
 </div>
 </div>
 <!-- FIN APP -->	

@@ -49,10 +49,7 @@ DB.subcategorys = [];
 
 /* LOAD AND START FUNCTION */
 
-$(document).ready(function(){
-	
-	
-	
+$(document).ready(function(){	
 	loading();	
 	
 	$.get("../config.json",
@@ -159,52 +156,47 @@ $(document).ready(function(){
 
 
 function loading(){
-$('#loading').fadeOut();
-if ($('#loading').css("display") == 'block') $('#loading').hide();
-else{ $('#loading').fadeIn();
-
-$('#custom img').load(function(){
 	$('#loading').fadeOut();
-});
-}
+	if ($('#loading').css("display") == 'block'){
+		$('#loading').hide();
+	}else{ 
+		$('#loading').fadeIn();
+		$('#custom img').load(function(){ 	$('#loading').fadeOut(); });
+	}
 }
 
 function setCurrentObject(jqueryselector){
 	currentObject = jqueryselector;
 	if (currentObject.hasClass("objectText")) {
-	
-		displayTextProperties();
-	
-	}/*
-else{
-		$('#uploadImage').slideUp();
-		$('#textOptions').slideUp();
-		//displayImageProperties();
-	}
-*/
-}
 
-function displayTextProperties(){
-		
-	if ($('#uploadImage').css("display") != 'none'){
-		$('#uploadImage').slideUp();
-	}
+		/* Display text properties */
+		if ($('#uploadImage').css("display") != 'none'){
+			$('#uploadImage').slideUp();
+		}
 		$('#textOptions').slideDown();
-	
-	
 		currentFontSize = $('.text',currentObject).css("font-size");
 		currentFontSize = currentFontSize.substr(0,currentFontSize.indexOf('p'));
 		currentFontFamily = $('.text',currentObject).css("font-family");
 		jQuery("select#fontfamily option[value='"+currentFontFamily+"']").attr("selected", "selected");
 		jQuery("select#fontsize option[value='"+currentFontSize+"']").attr("selected", "selected");
-		
+	
+	}
 }
+
+function setTalla(T){
+	talla_selected = T;
+	$('.talla').css("background","transparent");
+	$('#talla_'+T).css("background","#333");
+}
+/*
+
 function displayImageProperties(){
 			$('#uploadImage').show();
 		$('#textOptions').hide(function(){
 
 		});
 }
+*/
 function getValue(element){
 	switch(element.type){
 		case 'select-one':
@@ -217,38 +209,15 @@ function getValue(element){
 		default:
 			if (element.value) return element.value;
 			else return '';
-		break;
-		
+		break;	
 	}
 	return 0;
 }
 
-function setTalla(T){
-	talla_selected = T;
-	$('.talla').css("background","transparent");
-	$('#talla_'+T).css("background","#333");
-	
-
-}
-function setFontSize (item){
-
-	var aux = getValue(item);
-	$('.text',currentObject).css("font-size",aux+'px');
-	lineheightauto = (parseInt(aux)) + ((parseInt(aux) * 9) / 100);
-	console.info(lineheightauto);
-	$('.text',currentObject).css("line-height",lineheightauto+'px');
-}
-
-function setFontFamily(item){
-	
-	var aux = getValue(item);
-	$('.text',currentObject).css("font-family",aux);
-}
 
 function delete_textbox(){
 	currentObject.hide();
 	if (productView='front'){
-		
 		for (i=0;i<frontTexts.length;i++){
 			if (frontTexts[i].attr("id") == currentObject.attr("id")) frontTexts[i] = -1;
 		}
@@ -256,27 +225,23 @@ function delete_textbox(){
 		for (i=0;i<backTexts.length;i++){
 			if (backTexts[i].attr("id") == currentObject.attr("id")) backTexts[i] = -1;
 		}
-	
 	}
-currentObject = "";
-	//currentObject.remove();
-		decrementar_precio(precio_nuevo_texto);		
+	currentObject = "";
+	decrementar_precio(precio_nuevo_texto);		
 }
+
 function delete_imgbox(){
 	currentObject.hide();
 	if (productView='front'){
-		
 		for (i=0;i<frontImgs.length;i++){
 			if (frontImgs[i].attr("id") == currentObject.attr("id")) frontImgs[i] = -1;
 		}
 	}else{
 		for (i=0;i<backImgs.length;i++){
 			if (backImgs[i].attr("id") == currentObject.attr("id")) backImgs[i] = -1;
-		}
-	
+		}	
 	}
 	currentObject = "";
-	//currentObject.remove();
 	decrementar_precio(precio_nuevo_img);
 }
 
@@ -305,56 +270,24 @@ function createTextBox(){
 		else backTexts.push($(idjquery));				
 		
 		$(idjquery+' .text').css("font-size","40px");
-		
-		
-		
-			$(idjquery).resizable({
-/* 		   aspectRatio:true, */ 
+		$(idjquery).resizable({
 		   containment: "parent",
 		   handles: "se",
 		   autoHide: true,
 		   gHost: true,
 		   maxWidth:380,
-/* 		   maxHeight:220, */
 		   minWidth:70,
            stop: function(event, ui) {
-        	/*
-		        var w = $(this).width();
-                var h = $(this).height();
-                console.log('StopEvent fired')
-                console.log('Width:'+w);
-                console.log('Height:'+h)    
-			*/
-            }
+           }
 	 }).draggable({
             containment: "parent",
-/*             handle: idjquery+" .text", */
             drag: function(){
-/*
-                var offset = $(this).offset();
-                var xPos = offset.left;
-                var yPos = offset.top;
-                console.log('x: ' + xPos);
-                  console.log('y: ' + yPos);
-*/
             },
             stop: function(){
-/*
-                var finalOffset = $(this).offset();
-                var finalxPos = finalOffset.left;
-                var finalyPos = finalOffset.top;
-				console.log('Final X: ' + finalxPos);
-	            console.log('Final X: ' + finalyPos);
-*/
             }
       });
-
-
-		
+	
 /* 		OBJECT CLICK */		
-		$(idjquery).click(function(){
-			setCurrentObject($(this));
-		});
 /* 		MOUSE LEAVE */
 		$(idjquery).mouseleave(function(){ 
 /* 			$(this).css("border-color","transparent"); */
@@ -485,62 +418,7 @@ function createImageBox(imgSrc, isdesign){
 
 
 
-function ajaxFileUploadBut()	{
-	//console.info("SI");
-		$("#loading")
-		.ajaxStart(function(){
-			$(this).show();
-		})
-		.ajaxComplete(function(){
-			$(this).hide();
-		});
 
-		$.ajaxFileUpload
-		(
-			{
-				url:'js/AFU/doajaxfileupload.php',
-				secureuri:false,
-				fileElementId:'fileToUpload',
-				dataType: 'json',
-				data:{name:'logan', id:'id'},
-				success: function (data, status)
-				{
-					
-						if(data.error != '')
-						{
-							alert(data.error);
-						}else
-						{ 
-							numCustomImages++;
-						console.info("Image uploaded 100%");
-						console.info(encodeURI(data.filename));
-							createImageBox(encodeURI(data.filename),false);
-							
-								$('#uploadImage').hide(function(){
-									$('#textOptions').show();
-									});
-
-							//console.info(data);
-							//dragresize.apply(document);
-						
-						}
-					
-				},
-				error: function (data, status, e)
-				{
-					alert(e);
-				}
-			}
-		)
-		
-		return false;
-
-	}
-
-function renderProductInfo(){	     			
-	     			$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
-	     			$('#td_descriptionProduct').html(productData.descriptionProduct);
-}
 
 function loadProduct(id){
 		loading();
@@ -561,7 +439,10 @@ function loadProduct(id){
      			productData = data;
      			//$('#front_img').html("<img width='50' src='customAPP/data/img/thumbs/"+data.front_img+"'>");
      			//$('#back_img').html("<img width='50' src='customAPP/data/img/thumbs/"+data.back_img+"'>"); 		
-     			renderProductInfo();
+
+   				$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
+				$('#td_descriptionProduct').html(productData.descriptionProduct);
+
      		
      		}, "json");
 
@@ -572,40 +453,29 @@ function loadProduct(id){
 function productsNavigator(){
 	if (numProducts > maxProductsPage){
 		var number_pages = numProducts / 6;
-		
-		$('#productsNavigator').html("1 / "+number_pages+ " Next >>");
-		
-	} else 
-	$('#productsNavigator').html(numProducts+' / '+numProducts);
+		$('#productsNavigator').html("1 / "+number_pages+ " Next >>");		
+	} else {
+		$('#productsNavigator').html(numProducts+' / '+numProducts);
+	}
 }
 
-function productsNavigatorNext(){
-
-
-}
-function productsNavigatorPrev(){
-
-
-}
 function loadProductBackImg(){
 	loading();
 	$('#productImage').attr("src","../data/img/"+productData.back_img);
 	productView = 'back';
 	switchBackFront();
-	
 }
+
 function loadProductFrontImg(){
 	loading();
 	$('#productImage').attr("src","../data/img/"+productData.front_img);
 	productView = 'front';
 	switchBackFront();
-
 }
 
 function switchBackFront(){
 
 	if (productView == 'back'){
-		
 		for (i=0;i<frontTexts.length;i++)		
 			if (frontTexts[i] != -1) frontTexts[i].hide();
 		for (i=0;i<backTexts.length;i++)		
@@ -614,13 +484,9 @@ function switchBackFront(){
 		for (i=0;i<frontImgs.length;i++)		
 			if (frontImgs[i] != -1) frontImgs[i].hide();
 		for (i=0;i<backImgs.length;i++)		
-			if (backImgs[i] != -1) backImgs[i].show();
-
-	
+			if (backImgs[i] != -1) backImgs[i].show();	
 		$('#front_img').show();
 		$('#back_img').hide();
-
-
 	} else {
 		for (i=0;i<frontTexts.length;i++)		
 			if (frontTexts[i] != -1)frontTexts[i].show();		
@@ -630,13 +496,10 @@ function switchBackFront(){
 		for (i=0;i<frontImgs.length;i++)		
 			if (frontImgs[i] != -1)frontImgs[i].show();		
 		for (i=0;i<backImgs.length;i++)		
-			if (backImgs[i] != -1)	backImgs[i].hide();
-			
+			if (backImgs[i] != -1)	backImgs[i].hide();			
 		$('#front_img').hide();
 		$('#back_img').show();
-
 	}
-	
 }
 
 function loadcomboSubcategoria(item){
@@ -749,44 +612,6 @@ function saveAndSend(){
 function open_checkout_div(){
 	$('#tshirtTool').html();
 	$('#tshirtTool').load('checkout.html');
-	/*
-$('#pago-pedido-container #precio_final').html($('#precio').html());
-	$('#checkout,#products,#designs,#textOptions,#uploadImage,#descripcion-producto').slideUp();
-	$('#menu_productos,#custom,#menu_diseno,#button_new_textbox,#menu_foto').fadeOut();
-	$('#envio-pedido-container').slideDown();
-	$('#pago-pedido-container').slideDown();
-*/
-}
-function validateEmail(email){
-	var regEx = /^[\w\.\+-]{1,}\@([\da-zA-Z-]{1,}\.){1,}[\da-zA-Z-]{2,6}$/;
-	if (!regEx.test(email)) {
-		return false;
-	} 
-	return true;
-}
-
-function validate_nosubmit(z){
-
-	for (var x=0; x < z.length; x++) {
-
- 		if (z[x].getAttribute('name') == 'email' && validateEmail(getValue(z[x])) || z[x].getAttribute('name') != 'email') {
-	 		
-	 		if (z[x].getAttribute('required')){
-	 		
-	 			if ( z[x].getAttribute('required') == 'required'  && getValue(z[x]) == "" || getValue(z[x]) == 0){
-					var ncampo = z[x].getAttribute('name');
-	 				alert("El campo "+ncampo+" es obligatorio ");
-		 			z[x].style.background='#ffff55';
-					z[x].focus();
-	 				return false;	
-	 			} else z[x].style.background='#ffffff';
-	 		} 
- 		} else {
- 			alert("Email no valido");z[x].style.background='#ffff55';z[x].focus();
- 			return false;
- 		}
- 	}
- 	return true;
 }
 
 function confirmar_compra_contrarembolso(){
@@ -841,6 +666,15 @@ $('* > img').mousedown(function(event){
 		if (event.preventDefault) event.preventDefault();
 });
 
+$('#productImg').mousedown(function(e){ 
+	this.focus();
+	if (event.preventDefault) event.preventDefault();this.focus();
+});
+
+$(idjquery).click(function(){ 	setCurrentObject($(this)); });
+
+
+
 /* UI Buttons 
 ------------------------------------------*/
 
@@ -883,5 +717,71 @@ $('* > img').mousedown(function(event){
 	$('#btn_new_textbox').click(function(){ createTextBox(); });  	
 	$('#comboCategoria').change(function(){ loadcomboSubcategoria(this); });
 	$('#comboSubcategoria').change(function(){ refreshProducts(this); });
+	
+	$('#fontfamily').change(function(){
+		item = this;
+		var aux = getValue(item);
+		$('.text',currentObject).css("font-family",aux);
+	});
+	
+	$('#fontsize').change(function(){	
+		item = this;	
+		var aux = getValue(item);
+		$('.text',currentObject).css("font-size",aux+'px');
+		lineheightauto = (parseInt(aux)) + ((parseInt(aux) * 9) / 100);
+		console.info(lineheightauto);
+		$('.text',currentObject).css("line-height",lineheightauto+'px');
+	});
 
+	$('#btnUpload').click(function(){
+		$("#loading")
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+		});
+
+		$.ajaxFileUpload
+		(
+			{
+				url:'js/AFU/doajaxfileupload.php',
+				secureuri:false,
+				fileElementId:'fileToUpload',
+				dataType: 'json',
+				data:{name:'logan', id:'id'},
+				success: function (data, status)
+				{
+					
+						if(data.error != '')
+						{
+							alert(data.error);
+						}else
+						{ 
+							numCustomImages++;
+						console.info("Image uploaded 100%");
+						console.info(encodeURI(data.filename));
+							createImageBox(encodeURI(data.filename),false);
+							
+								$('#uploadImage').hide(function(){
+									$('#textOptions').show();
+									});
+
+							//console.info(data);
+							//dragresize.apply(document);
+						
+						}
+					
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			}
+		)
+		
+		return false;
+
+
+	});
 })();
