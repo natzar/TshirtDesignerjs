@@ -1,8 +1,11 @@
-tshirtCustomizer
+T-shirt Customizer 1.0
 ================
-
 An UI for "designing" t-shirts. Select t-shirt, add text, add an image and customize them.
 No database. It uses a json file as a data repository.
+
+@MIT LICENSE
+@Date Creation: March, 2010
+
 
 ## Install
 
