@@ -41,7 +41,7 @@ var idjquery;
 var DB = {};
 DB.products = [];
 DB.categorys = [];
-DB.subcategorys = [];
+
 
 /* UI Functions
 ------------------------------------------*/
@@ -287,15 +287,12 @@ function createImageBox(imgSrc, isdesign){
 }
 
 
-
-
-
 function loadProduct(id){
 		loading();
 		productView='front';
 		switchBackFront();
 		data = DB.products[id];
-	if (!productData.price) productData.price = 0;					
+		if (!productData.price) productData.price = 0;					
 		$('#productImage').attr("src","../data/img/"+data.front_img); 
 
 		precio = precio - parseInt(productData.price) + parseInt(data.price);
@@ -388,7 +385,7 @@ function refreshProducts(item){
 		product = DB.products[i];
 		
 		if (product.subcategory == subcatId){
-			$('#productThumbs img[productid='+subcatId+']').show();
+			$('#productThumbs img[subcategory='+subcatId+']').show();
 		}
 	
 	
@@ -636,16 +633,21 @@ $(document).ready(function(){
 	$.get("../config.json",
    		function(data){    			
      		DB.products = data.products;
+     		categorysAux = subcategorysAux = [];
+     		
    			for (i = 0;i < data.products.length;i++){
    				var product= data.products[i];   				
-   				if ($.inArray(product.category,DB.categorys) < 0){
-   					DB.categorys.push(product.category);
+   				if ($.inArray(product.category,categorysAux) < 0){
+	   				categorysAux.push(product.category);
+   					DB.categorys[product.category] = [];
    				}
-   				if ($.inArray(product.subcategory,DB.subcategorys) < 0){
-   					DB.subcategorys.push(product.subcategory);
+   				if ($.inArray(product.subcategory,DB.categorys[product.category]) < 0){
+   					DB.categorys[product.category].push(product.subcategory);
+//   					DB.categorys[DB.categorys.length -1].subcategorys.push({product.subcategory);
    				}   			
-  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" style="display:none">');
+  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" subcategory="'+product.subcategory+'" style="display:none">');
      		}			
+
      		generaloptions = data.options;	
 			generaloptions.precioTexto = parseInt(generaloptions.precioTexto);
 			generaloptions.precioImagen = parseInt(generaloptions.precioImagen);
@@ -676,23 +678,22 @@ $(document).ready(function(){
 			for (i=0;i<data.designs.length;i++){
      			$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
      		}
+			var value;
+			for(var key in DB.categorys) {
+			    subcategorys = DB.categorys[key];
+				$('#comboCategoria').append( $('<option></option>').val(key).html(key));
+
+				for (i = 0;i < subcategorys.length;i++)				
+			  	$('#comboSubCategoria').append( $('<option category="'+key+'"></option>').val(subcategorys[i]).html(subcategorys[i]));
 			
-			for (i = 0;i < DB.categorys.length;i++)				
-				$('#comboCategoria').append( $('<option></option>').val(DB.categorys[i]).html(DB.categorys[i]));
-			
-			
-			for (i = 0;i < DB.subcategorys.length;i++)				
-			  	$('#comboSubCategoria').append( $('<option></option>').val(DB.subcategorys[i]).html(DB.subcategorys[i]));
-			
+			}
+
      			refreshProducts();
      			loadProduct(0);
 				createTextBox();
 				
-     		}, "json");
-   
-   
+   		}, "json");   
    });
-
 })();
 
 
