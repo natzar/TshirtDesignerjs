@@ -17,7 +17,7 @@
 		</div>
 		<div class="modal-body" id="text"> </div>
 		<div class="modal-footer">
-		    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+		    <a href="#" class="btn btn-primary" data-dismiss="modal">CLOSE</a>
 	  	</div>
 	</div>
 	<div class="container" id="tshirtTool" >
@@ -26,10 +26,10 @@
 			<div class="span12">
 				<div id="menu">
 					<div class="btn-group">
-											<div id="menu_productos" class="btn"><i class="icon-eye-open"></i> Seleccionar Producto</div>
+					<div id="menu_productos" class="btn"><i class="icon-eye-open"></i> Seleccionar Producto</div>
 					<div id="menu_diseno" class="btn"><i class=" icon-book"></i> Seleccionar Diseño</div>
 	
-					<a id="btn_new_textbox" class="btn"   href="javascript:createTextBox()"><i class="icon-font"></i> Textbox</a>
+					<a id="btn_new_textbox" class="btn" ><i class="icon-font"></i> Textbox</a>
 					<a id="menu_foto" class="btn"  ><i class="icon-picture"></i> Imagen</a>
 					<a class="btn"  id="makepdf-btn"   ><i class="icon-plus-sign"></i> Make PDF</a>
 					</div>
@@ -42,8 +42,8 @@
 				<div id="products" class="well">
 					<h3>Selecciona Producto</h3>
 					<div class="subwindow_content">
-						<select id="comboCategoria" onChange="loadcomboSubcategoria(this);" name="categoria"></select>
-						<select id="comboSubCategoria" onChange="refreshProducts(this);" name="subcategoria"> </select>
+						<select id="comboCategoria"  name="categoria"></select>
+						<select id="comboSubCategoria"  name="subcategoria"> </select>
 						<hr>
 						<div id="productThumbs"></div>
 						<hr>
@@ -212,9 +212,8 @@
 	<script src="js/json2.js"></script>
 
 	<!-- 		Interface load -->
-	<script src="js/interface.load.js"></script>
-	<script src="js/functions.js"></script>
-	<script src="js/interface.functions.js" type="text/javascript"></script>
-	
+
+	<script src="js/application.js"></script>	
+
 </body>
 </html>

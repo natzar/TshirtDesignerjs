@@ -1,19 +1,162 @@
 /*
 
-Product Customization Web Application v1.0
-(c) 2005-2006 Beto López, Php Ninja Software http://www.phpninja.info
+	Product Customization Web Application v1.0
+	(c) 2005-2006 Beto López, Php Ninja Software http://www.phpninja.info
+	
+	Licensed under the CC-GNU LGPL, version 2.1 or later:
+	http://creativecommons.org/licenses/LGPL/2.1/
+	This is distributed WITHOUT ANY WARRANTY; without even the implied
+	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Licensed under the CC-GNU LGPL, version 2.1 or later:
-http://creativecommons.org/licenses/LGPL/2.1/
-This is distributed WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/ 
+
+(function() {
+
+// GLOBAL VARS
+
+/* MADE FOR 2 VIEWS Back/Front */
+
+var frontTexts = []; // save front texts
+var backTexts = []; // save back texts
+var frontImgs = []; // save front imgs
+var backImgs = []; // save back imgs
+
+var productView = 'front'; // init view = front, front / back
+var numCustomImages = 0; // ?
+var lang = 'esp'; // ?
+var numProducts = 0; // ?
+var maxProductsPage = 6; // idem
+var minFontSize = 0; // min Font Size
+var productData;  // current product loaded on start or by loadproduct()
+var talla_selected = -1; // save the selected TALLA
+var currentObject; // current selected Object $() 
+var precio = 0; // precio to count increments and decrements of price
+var generaloptions;
+var cantidad = 1;
+var precio_nuevo_texto = 0;
+var precio_nuevo_img = 0;
+var textDefault = 'textDefault';
+
+var help_titles = [];
+var help_texts = [];
 
 
-FUNCTIONS.JS 
-Static Js Functions
+var DB = {};
+DB.products = [];
+DB.categorys = [];
+DB.subcategorys = [];
 
 
+/* LOAD AND START FUNCTION */
+
+$(document).ready(function(){
+	
+	
+	
+	loading();	
+	
+	$.get("../config.json",
+   			function(data){
+     			
+     			console.log(data); //  2pm
+     			
+     			DB.products = data.products;
+
+     		/*
+	
+     			for (i = 0;i < data.categorys.length;i++)				
+   				  	$('#comboCategoria').append( $('<option></option>').val(data.categorys[i].id).html(data.categorys[i].category));
+     			
+     			if (data.subcategorys.length > 0){
+	     			for (i = 0;i < data.subcategorys.length;i++)				
+   					  	$('#comboSubCategoria').append( $('<option></option>').val(data.subcategorys[i].id).html(data.subcategorys[i].subCategory));
+     			}		
+*/console.log(data.products.length);
+     			for (i = 0;i < data.products.length;i++)
+	     				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+data.products[i].id+'">');
+     			
+     			for (i=0;i<data.designs.length;i++){
+     				$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
+     			}
+
+     			//refreshProducts(document.getElementById('comboCategoria'));
+     			
+     			/* Options load */
+					
+				/* 					Tamaños letra */
+     				generaloptions = data.options;			
+     				console.log(generaloptions);		
+	     			for (i = parseInt(generaloptions.minFontSize);i < parseInt(generaloptions.maxFontSize);i += 5)		
+	   				  	$('#textOptions #fontsize').append( $('<option></option>').val(i).html(i));
+
+				/* Cantidad volumen pedido */
+	     			for (i = parseInt(generaloptions.minCantidadPedido);i < parseInt(generaloptions.maxCantidadPedido);i++)
+	     			  	$('#cantidad').append( $('<option></option>').val(i).html(i));
+
+				/* Precios por img o texto */
+				
+					precio_nuevo_texto = parseInt(generaloptions.precioTexto);
+					precio_nuevo_img = parseInt(generaloptions.precioImagen);
+
+				/* 					Textos Ayuda */
+
+					$('#td_help').append("<b>Necesitas Ayuda?</b><br>");
+
+					for (i = 0; i< data.help.length;i++){
+						help_titles[i] = data.help[i].title;
+						help_texts[i] = data.help[i].text;
+						$('#td_help').append('<a href="javascript:show_help('+i+');">'+data.help[i].title+'</a><br>');
+					}
+					textDefault = generaloptions.textDefault;
+					
+				/* 				End OptionsLoad */
+     		
+     			/* Products and Product info */
+     			
+	     			numProducts = data.products.length;
+	       			productData = data.products[0];
+	     			productsNavigator();
+					$('#productImage').attr("src","../data/img/"+productData.front_img);    
+	     			renderProductInfo();
+	     			precio = parseInt(productData.price);
+					refrescar_precio();	
+	     			
+	     			/* product thumbs clickable */
+	     			
+	     			$('#productThumbs img').click(function(){
+						aux = $(this).attr('productid');
+						loadProduct(aux);
+					});
+		
+					$('#productThumbs img').mouseenter(function(){
+						$(this).css("cursor","pointer");	
+						$(this).css("cursor","hand");
+					});
+					
+				
+				/* Preload Fonts */
+/*
+				$('#tshirtTool').append("<div id='preload' style='display:none;'></div>");
+				var comboFont = $('#fontFamily');
+				$('#fontFamily > option').each(function(e,i){
+					var aux = getValue(this);
+					$('#preload').append("<p style=\"font-family:'"+aux+"';\">Preloading "+e+" </p>");
+				});
 */
+
+				createTextBox();
+				
+     		}, "json");
+   
+   
+   });
+
+
+
+/* UI Functions
+------------------------------------------*/
+
+
 
 function loading(){
 $('#loading').fadeOut();
@@ -281,33 +424,12 @@ function createImageBox(imgSrc, isdesign){
 		   maxHeight:220,
 		   minWidth:70,
            stop: function(event, ui) {
-        	/*
-		        var w = $(this).width();
-                var h = $(this).height();
-                console.log('StopEvent fired')
-                console.log('Width:'+w);
-                console.log('Height:'+h)    
-			*/
             }
 	 }).draggable({
             containment: "parent",
             drag: function(){
-/*
-                var offset = $(this).offset();
-                var xPos = offset.left;
-                var yPos = offset.top;
-                console.log('x: ' + xPos);
-                  console.log('y: ' + yPos);
-*/
             },
             stop: function(){
-/*
-                var finalOffset = $(this).offset();
-                var finalxPos = finalOffset.left;
-                var finalyPos = finalOffset.top;
-				console.log('Final X: ' + finalxPos);
-	            console.log('Final X: ' + finalyPos);
-*/
             }
       });
 
@@ -415,17 +537,9 @@ function ajaxFileUploadBut()	{
 
 	}
 
-function renderProductInfo(){
-
-
-					
-	     			
+function renderProductInfo(){	     			
 	     			$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
 	     			$('#td_descriptionProduct').html(productData.descriptionProduct);
-	     			
-	     		//	$('#front_img').html("<img width='50' src='customAPP/data/img/thumbs/"+productData.front_img+"'>");
-	     		//	$('#back_img').html("<img  width='50' src='customAPP/data/img/thumbs/"+productData.back_img+"'>"); 		
-	     			
 }
 
 function loadProduct(id){
@@ -475,14 +589,14 @@ function productsNavigatorPrev(){
 }
 function loadProductBackImg(){
 	loading();
-	$('#productImage').attr("src","customAPP/data/img/"+productData.back_img);
+	$('#productImage').attr("src","../data/img/"+productData.back_img);
 	productView = 'back';
 	switchBackFront();
 	
 }
 function loadProductFrontImg(){
 	loading();
-	$('#productImage').attr("src","customAPP/data/img/"+productData.front_img);
+	$('#productImage').attr("src","../data/img/"+productData.front_img);
 	productView = 'front';
 	switchBackFront();
 
@@ -719,3 +833,55 @@ function close_help(){
 		$('#helper').fadeOut();
 	}
 }
+
+/* UI GLOBAL 
+------------------------------------------*/
+
+$('* > img').mousedown(function(event){
+		if (event.preventDefault) event.preventDefault();
+});
+
+/* UI Buttons 
+------------------------------------------*/
+
+	$('#makepdf-btn').click(function(){ 	
+		var content_html = escape($('#custom').html());
+		window.location.href= '../php/makepdf.php?html='+content_html;
+	});
+	
+	$('#btn_buy').click(function(){ 
+		if (talla_selected != -1) saveAndSend();
+		else alert(SELECT_SIZE);
+	});
+	
+	$('#bold_btn').click(function(){
+		if ($('.text',currentObject).css("font-weight") == 'bold') $('.text',currentObject).css("font-weight","normal");
+		else {$('.text',currentObject).css("font-weight","bold");
+		$('.text',currentObject).css("color","#000");
+		}
+	});
+	
+	$('#italic_btn').click(function(){
+		if ($('.text',currentObject).css("font-style") == 'italic') $('.text',currentObject).css("font-style","normal");
+		else $('.text',currentObject).css("font-style","italic");
+	});
+	
+	$('.color_box').click(function(){ 
+		var aux = $(this).css("background-color");
+		$('.text',currentObject).css("color", aux);
+	});
+	
+	$('#leftalign').click(function(){ 	$('.text',currentObject).css("text-align","left"); 	});
+	$('#rightalign').click(function(){ 	$('.text',currentObject).css("text-align","right"); 	});	
+	$('#centeralign').click(function(){ 	$('.text',currentObject).css("text-align","center"); 	});	
+	$('#menu_productos').click(function(){ $('#products').show();$('#designs').hide()	});
+	$('#menu_foto').click(function(){$('#uploadImage').show();	$('#textOptions').hide() });
+	$('#menu_diseno').click(function(){ $('#designs').show();$('#products').hide();	});
+	$('#front_img').click(function(){ 		loadProductFrontImg();	});
+	$('#back_img').click(function(){ 		loadProductBackImg(); 	});
+	
+	$('#btn_new_textbox').click(function(){ createTextBox(); });  	
+	$('#comboCategoria').change(function(){ loadcomboSubcategoria(this); });
+	$('#comboSubcategoria').change(function(){ refreshProducts(this); });
+
+})();

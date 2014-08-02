@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tshirts>
-   <categorys>
-      <item>
-         <category>Hombre</category>
-         <id>1</id>
-         <orden>0</orden>
-      </item>
-      <item>
-         <category>Mujer</category>
-         <id>2</id>
-         <orden>0</orden>
-      </item>
-   </categorys>
    <designs>
       <item>
          <id>1</id>
@@ -123,52 +111,66 @@
       <precioTexto>4</precioTexto>
       <textDefault>Kustom!</textDefault>
    </options>
-   <product>
-      <back_img>detras2.png</back_img>
-      <descriptionProduct>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</descriptionProduct>
-      <front_img>delante2.png</front_img>
-      <id>1</id>
-      <imgProduct>687_giqsxw.jpeg</imgProduct>
-      <orden>0</orden>
-      <parentProduct>0</parentProduct>
-      <price>10</price>
-      <subcategory>1</subcategory>
-      <titleProduct>Nota!</titleProduct>
-   </product>
-   <productsthumbs>
+   <products>
       <item>
+         <back_img>detras2.png</back_img>
+         <descriptionProduct>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</descriptionProduct>
          <front_img>delante2.png</front_img>
          <id>1</id>
+         <imgProduct>687_giqsxw.jpeg</imgProduct>
+         <orden>0</orden>
+         <parentProduct>0</parentProduct>
+         <price>10</price>
+         <subcategory>1</subcategory>
+         <titleProduct>Nota!</titleProduct>
       </item>
       <item>
+         <back_img>detras3.png</back_img>
+         <descriptionProduct>image1.jpg,image2.jpg</descriptionProduct>
          <front_img>delante3.png</front_img>
          <id>2</id>
+         <imgProduct />
+         <orden>0</orden>
+         <parentProduct>0</parentProduct>
+         <price>20</price>
+         <subcategory>1</subcategory>
+         <titleProduct>Nota 3!</titleProduct>
       </item>
       <item>
+         <back_img>detras4.png</back_img>
+         <descriptionProduct>image1.jpg,image2.jpg</descriptionProduct>
          <front_img>delante4.png</front_img>
          <id>3</id>
+         <imgProduct />
+         <orden>0</orden>
+         <parentProduct>0</parentProduct>
+         <price>30</price>
+         <subcategory>1</subcategory>
+         <titleProduct>Camiseta gris</titleProduct>
       </item>
       <item>
+         <back_img>captura_de_pantalla_2012-05-02_a_las_17.39.22_2012-02-05-08-40-22y5ktysc.png</back_img>
+         <descriptionProduct>&lt;p&gt;sasasas&lt;/p&gt;</descriptionProduct>
          <front_img>captura_de_pantalla_2012-05-02_a_las_17.39.22_2012-02-05-08-40-227bs5fr7.png</front_img>
          <id>5</id>
+         <imgProduct>captura_de_pantalla_2012-05-02_a_las_17.39.22_2012-02-05-08-40-22qwcxol9.png</imgProduct>
+         <orden>0</orden>
+         <parentProduct>0</parentProduct>
+         <price>23</price>
+         <subcategory>1</subcategory>
+         <titleProduct>sads</titleProduct>
       </item>
       <item>
+         <back_img>captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51i5te6a9.png</back_img>
+         <descriptionProduct>&lt;p&gt;cxcxxc&lt;/p&gt;</descriptionProduct>
          <front_img>captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51d64wimn.png</front_img>
          <id>6</id>
-      </item>
-   </productsthumbs>
-   <subcategorys>
-      <item>
-         <category>1</category>
-         <id>1</id>
+         <imgProduct>captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51as4yldh.png</imgProduct>
          <orden>0</orden>
-         <subCategory>Camisetas Hombre</subCategory>
+         <parentProduct>0</parentProduct>
+         <price>34</price>
+         <subcategory>1</subcategory>
+         <titleProduct>sd</titleProduct>
       </item>
-      <item>
-         <category>1</category>
-         <id>3</id>
-         <orden>0</orden>
-         <subCategory>Bañador</subCategory>
-      </item>
-   </subcategorys>
+   </products>
 </tshirts>
