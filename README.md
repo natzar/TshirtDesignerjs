@@ -10,4 +10,4 @@ To install PDF Support, Run "composer install". You'll need composer installed t
 
 
 
-[Screenshot](https://github.com/natzar/tshirtCustomizer/blob/master/screenshot.png)
+![Screenshot](https://github.com/natzar/tshirtCustomizer/blob/master/screenshot.png "Screenshot")
