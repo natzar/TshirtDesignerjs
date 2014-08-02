@@ -43,71 +43,6 @@ DB.products = [];
 DB.categorys = [];
 DB.subcategorys = [];
 
-$(document).ready(function(){	
-	loading();	
-	/* Get configuration file */	
-	$.get("../config.json",
-   		function(data){    			
-     		DB.products = data.products;
-   			for (i = 0;i < data.products.length;i++){
-   				var product= data.products[i];   				
-   				if ($.inArray(product.category,DB.categorys) < 0){
-   					DB.categorys.push(product.category);
-   				}
-   				if ($.inArray(product.subcategory,DB.subcategorys) < 0){
-   					DB.subcategorys.push(product.subcategory);
-   				}   			
-  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" style="display:none">');
-     		}			
-     		generaloptions = data.options;	
-			generaloptions.precioTexto = parseInt(generaloptions.precioTexto);
-			generaloptions.precioImagen = parseInt(generaloptions.precioImagen);
-			textDefault = generaloptions.textDefault;
-					
- 			for (i = parseInt(generaloptions.minFontSize);i < parseInt(generaloptions.maxFontSize);i += 5)		$('#textOptions #fontsize').append( $('<option></option>').val(i).html(i));
-
- 			for (i = parseInt(generaloptions.minCantidadPedido);i < parseInt(generaloptions.maxCantidadPedido); i++)
- 			  	$('#cantidad').append( $('<option></option>').val(i).html(i));
-
-			$('#td_help').append("<b>Necesitas Ayuda?</b><br>");
-			
-			for (i = 0; i< data.help.length;i++){
-				help_titles[i] = data.help[i].title;
-				help_texts[i] = data.help[i].text;
-				$('#td_help').append('<a href="#help" id="'+i+'" class="help_link">'+data.help[i].title+'</a><br>');
-			}
-
-
-			/* Preload Fonts */
-			$('#tshirtTool').append("<div id='preload' style='display:none;'></div>");
-			var comboFont = $('#fontFamily');
-			$('#fontFamily > option').each(function(e,i){
-				var aux = getValue(this);
-				$('#preload').append("<p style=\"font-family:'"+aux+"';\">Preloading "+e+" </p>");
-			});
-				
-			for (i=0;i<data.designs.length;i++){
-     			$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
-     		}
-			
-			for (i = 0;i < DB.categorys.length;i++)				
-				$('#comboCategoria').append( $('<option></option>').val(DB.categorys[i]).html(DB.categorys[i]));
-			
-			
-			for (i = 0;i < DB.subcategorys.length;i++)				
-			  	$('#comboSubCategoria').append( $('<option></option>').val(DB.subcategorys[i]).html(DB.subcategorys[i]));
-			
-     			refreshProducts();
-     			loadProduct(0);
-				createTextBox();
-				
-     		}, "json");
-   
-   
-   });
-
-
-
 /* UI Functions
 ------------------------------------------*/
 
@@ -579,10 +514,6 @@ $('#productThumbs img').live('click',function(){
 	loadProduct(aux);
 });
 
-$('#productThumbs img').mouseenter(function(){
-	$(this).css("cursor","pointer");	
-	$(this).css("cursor","hand");
-});
 					
 
 
@@ -694,4 +625,74 @@ $('#productThumbs img').mouseenter(function(){
 		)
 		return false;
 	});
+
+
+/* On Document Ready
+-------------------------------*/
+
+$(document).ready(function(){	
+	loading();	
+	/* Get configuration file */	
+	$.get("../config.json",
+   		function(data){    			
+     		DB.products = data.products;
+   			for (i = 0;i < data.products.length;i++){
+   				var product= data.products[i];   				
+   				if ($.inArray(product.category,DB.categorys) < 0){
+   					DB.categorys.push(product.category);
+   				}
+   				if ($.inArray(product.subcategory,DB.subcategorys) < 0){
+   					DB.subcategorys.push(product.subcategory);
+   				}   			
+  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" style="display:none">');
+     		}			
+     		generaloptions = data.options;	
+			generaloptions.precioTexto = parseInt(generaloptions.precioTexto);
+			generaloptions.precioImagen = parseInt(generaloptions.precioImagen);
+			textDefault = generaloptions.textDefault;
+					
+ 			for (i = parseInt(generaloptions.minFontSize);i < parseInt(generaloptions.maxFontSize);i += 5)		$('#textOptions #fontsize').append( $('<option></option>').val(i).html(i));
+
+ 			for (i = parseInt(generaloptions.minCantidadPedido);i < parseInt(generaloptions.maxCantidadPedido); i++)
+ 			  	$('#cantidad').append( $('<option></option>').val(i).html(i));
+
+			$('#td_help').append("<b>Necesitas Ayuda?</b><br>");
+			
+			for (i = 0; i< data.help.length;i++){
+				help_titles[i] = data.help[i].title;
+				help_texts[i] = data.help[i].text;
+				$('#td_help').append('<a href="#help" id="'+i+'" class="help_link">'+data.help[i].title+'</a><br>');
+			}
+
+
+			/* Preload Fonts */
+			$('#tshirtTool').append("<div id='preload' style='display:none;'></div>");
+			var comboFont = $('#fontFamily');
+			$('#fontFamily > option').each(function(e,i){
+				var aux = getValue(this);
+				$('#preload').append("<p style=\"font-family:'"+aux+"';\">Preloading "+e+" </p>");
+			});
+				
+			for (i=0;i<data.designs.length;i++){
+     			$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
+     		}
+			
+			for (i = 0;i < DB.categorys.length;i++)				
+				$('#comboCategoria').append( $('<option></option>').val(DB.categorys[i]).html(DB.categorys[i]));
+			
+			
+			for (i = 0;i < DB.subcategorys.length;i++)				
+			  	$('#comboSubCategoria').append( $('<option></option>').val(DB.subcategorys[i]).html(DB.subcategorys[i]));
+			
+     			refreshProducts();
+     			loadProduct(0);
+				createTextBox();
+				
+     		}, "json");
+   
+   
+   });
+
 })();
+
+

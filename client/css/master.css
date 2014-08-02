@@ -176,3 +176,5 @@ input, select, .uneditable-input
 {
 	width:auto;
 }
+
+#productThumbs img{cursor:pointer;cursor:hand;}
