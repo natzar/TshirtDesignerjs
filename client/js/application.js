@@ -1,20 +1,17 @@
 /*
 
-	Product Customization Web Application v1.0
-	(c) 2005-2006 Beto López, Php Ninja Software http://www.phpninja.info
+	tShirt Customizer v1.0
+	@Author: Beto Ayesa, hola@betoayesa.com
+	@Contribute: www.github.com/natzar/tshirtCustomizer
+	www.betoayesa.com
 	
-	Licensed under the CC-GNU LGPL, version 2.1 or later:
-	http://creativecommons.org/licenses/LGPL/2.1/
+	Licensed under the MIT License
 	This is distributed WITHOUT ANY WARRANTY; without even the implied
 	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 */ 
 
 (function() {
-
-// GLOBAL VARS
-
-/* MADE FOR 2 VIEWS Back/Front */
 
 var frontTexts = []; // save front texts
 var backTexts = []; // save back texts
@@ -27,120 +24,81 @@ var lang = 'esp'; // ?
 var numProducts = 0; // ?
 var maxProductsPage = 6; // idem
 var minFontSize = 0; // min Font Size
-var productData;  // current product loaded on start or by loadproduct()
+var productData = new Object();  // current product loaded on start or by loadproduct()
 var talla_selected = -1; // save the selected TALLA
 var currentObject; // current selected Object $() 
-var precio = 0; // precio to count increments and decrements of price
+var precio = 0; // to count increments and decrements of price
 var generaloptions;
 var cantidad = 1;
-var precio_nuevo_texto = 0;
-var precio_nuevo_img = 0;
+
 var textDefault = 'textDefault';
 
 var help_titles = [];
 var help_texts = [];
 
+var idjquery;
 
 var DB = {};
 DB.products = [];
 DB.categorys = [];
 DB.subcategorys = [];
 
-
-/* LOAD AND START FUNCTION */
-
 $(document).ready(function(){	
 	loading();	
-	
+	/* Get configuration file */	
 	$.get("../config.json",
-   			function(data){
-     			
-     			console.log(data); //  2pm
-     			
-     			DB.products = data.products;
-
-     		/*
-	
-     			for (i = 0;i < data.categorys.length;i++)				
-   				  	$('#comboCategoria').append( $('<option></option>').val(data.categorys[i].id).html(data.categorys[i].category));
-     			
-     			if (data.subcategorys.length > 0){
-	     			for (i = 0;i < data.subcategorys.length;i++)				
-   					  	$('#comboSubCategoria').append( $('<option></option>').val(data.subcategorys[i].id).html(data.subcategorys[i].subCategory));
-     			}		
-*/console.log(data.products.length);
-     			for (i = 0;i < data.products.length;i++)
-	     				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+data.products[i].id+'">');
-     			
-     			for (i=0;i<data.designs.length;i++){
-     				$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
-     			}
-
-     			//refreshProducts(document.getElementById('comboCategoria'));
-     			
-     			/* Options load */
+   		function(data){    			
+     		DB.products = data.products;
+   			for (i = 0;i < data.products.length;i++){
+   				var product= data.products[i];   				
+   				if ($.inArray(product.category,DB.categorys) < 0){
+   					DB.categorys.push(product.category);
+   				}
+   				if ($.inArray(product.subcategory,DB.subcategorys) < 0){
+   					DB.subcategorys.push(product.subcategory);
+   				}   			
+  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" style="display:none">');
+     		}			
+     		generaloptions = data.options;	
+			generaloptions.precioTexto = parseInt(generaloptions.precioTexto);
+			generaloptions.precioImagen = parseInt(generaloptions.precioImagen);
+			textDefault = generaloptions.textDefault;
 					
-				/* 					Tamaños letra */
-     				generaloptions = data.options;			
-     				console.log(generaloptions);		
-	     			for (i = parseInt(generaloptions.minFontSize);i < parseInt(generaloptions.maxFontSize);i += 5)		
-	   				  	$('#textOptions #fontsize').append( $('<option></option>').val(i).html(i));
+ 			for (i = parseInt(generaloptions.minFontSize);i < parseInt(generaloptions.maxFontSize);i += 5)		$('#textOptions #fontsize').append( $('<option></option>').val(i).html(i));
 
-				/* Cantidad volumen pedido */
-	     			for (i = parseInt(generaloptions.minCantidadPedido);i < parseInt(generaloptions.maxCantidadPedido);i++)
-	     			  	$('#cantidad').append( $('<option></option>').val(i).html(i));
+ 			for (i = parseInt(generaloptions.minCantidadPedido);i < parseInt(generaloptions.maxCantidadPedido); i++)
+ 			  	$('#cantidad').append( $('<option></option>').val(i).html(i));
 
-				/* Precios por img o texto */
+			$('#td_help').append("<b>Necesitas Ayuda?</b><br>");
+			
+			for (i = 0; i< data.help.length;i++){
+				help_titles[i] = data.help[i].title;
+				help_texts[i] = data.help[i].text;
+				$('#td_help').append('<a href="#help" id="'+i+'" class="help_link">'+data.help[i].title+'</a><br>');
+			}
+
+
+			/* Preload Fonts */
+			$('#tshirtTool').append("<div id='preload' style='display:none;'></div>");
+			var comboFont = $('#fontFamily');
+			$('#fontFamily > option').each(function(e,i){
+				var aux = getValue(this);
+				$('#preload').append("<p style=\"font-family:'"+aux+"';\">Preloading "+e+" </p>");
+			});
 				
-					precio_nuevo_texto = parseInt(generaloptions.precioTexto);
-					precio_nuevo_img = parseInt(generaloptions.precioImagen);
-
-				/* 					Textos Ayuda */
-
-					$('#td_help').append("<b>Necesitas Ayuda?</b><br>");
-
-					for (i = 0; i< data.help.length;i++){
-						help_titles[i] = data.help[i].title;
-						help_texts[i] = data.help[i].text;
-						$('#td_help').append('<a href="javascript:show_help('+i+');">'+data.help[i].title+'</a><br>');
-					}
-					textDefault = generaloptions.textDefault;
-					
-				/* 				End OptionsLoad */
-     		
-     			/* Products and Product info */
-     			
-	     			numProducts = data.products.length;
-	       			productData = data.products[0];
-	     			productsNavigator();
-					$('#productImage').attr("src","../data/img/"+productData.front_img);    
-	     			renderProductInfo();
-	     			precio = parseInt(productData.price);
-					refrescar_precio();	
-	     			
-	     			/* product thumbs clickable */
-	     			
-	     			$('#productThumbs img').click(function(){
-						aux = $(this).attr('productid');
-						loadProduct(aux);
-					});
-		
-					$('#productThumbs img').mouseenter(function(){
-						$(this).css("cursor","pointer");	
-						$(this).css("cursor","hand");
-					});
-					
-				
-				/* Preload Fonts */
-/*
-				$('#tshirtTool').append("<div id='preload' style='display:none;'></div>");
-				var comboFont = $('#fontFamily');
-				$('#fontFamily > option').each(function(e,i){
-					var aux = getValue(this);
-					$('#preload').append("<p style=\"font-family:'"+aux+"';\">Preloading "+e+" </p>");
-				});
-*/
-
+			for (i=0;i<data.designs.length;i++){
+     			$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
+     		}
+			
+			for (i = 0;i < DB.categorys.length;i++)				
+				$('#comboCategoria').append( $('<option></option>').val(DB.categorys[i]).html(DB.categorys[i]));
+			
+			
+			for (i = 0;i < DB.subcategorys.length;i++)				
+			  	$('#comboSubCategoria').append( $('<option></option>').val(DB.subcategorys[i]).html(DB.subcategorys[i]));
+			
+     			refreshProducts();
+     			loadProduct(0);
 				createTextBox();
 				
      		}, "json");
@@ -152,6 +110,7 @@ $(document).ready(function(){
 
 /* UI Functions
 ------------------------------------------*/
+
 
 
 
@@ -197,22 +156,6 @@ function displayImageProperties(){
 		});
 }
 */
-function getValue(element){
-	switch(element.type){
-		case 'select-one':
-		case 'select':
-			return element.options[element.selectedIndex].value;
-		break;
-		case 'checkbox':
-			if (element.checked) return 1;
-			else return 0;
-		default:
-			if (element.value) return element.value;
-			else return '';
-		break;	
-	}
-	return 0;
-}
 
 
 function delete_textbox(){
@@ -227,7 +170,7 @@ function delete_textbox(){
 		}
 	}
 	currentObject = "";
-	decrementar_precio(precio_nuevo_texto);		
+	decrementar_precio(generaloptions.precioTexto);		
 }
 
 function delete_imgbox(){
@@ -246,17 +189,9 @@ function delete_imgbox(){
 }
 
 
-function incrementar_precio(aux){
-	precio = precio + aux;
-	refrescar_precio();
-}
-function decrementar_precio(aux){
-	precio = precio - aux;
-	refrescar_precio();
-}
-function refrescar_precio(){
-	$('#precio').html(precio+' €');
-}
+function incrementar_precio(aux){ 	precio = precio + aux;	refrescar_precio();}
+function decrementar_precio(aux){ 	precio = precio - aux;	refrescar_precio(); }
+function refrescar_precio(){ $('#precio').html(precio+' €'); }
 
 function createTextBox(){
 	var textBoxId = parseInt(frontTexts.length) + parseInt(backTexts.length);	
@@ -327,7 +262,7 @@ function createTextBox(){
 
 		 $(idjquery+' textarea').autosize();
 		setCurrentObject($(idjquery));
-		incrementar_precio(precio_nuevo_texto);
+		incrementar_precio(generaloptions.precioTexto);
 }
 
 
@@ -424,29 +359,19 @@ function loadProduct(id){
 		loading();
 		productView='front';
 		switchBackFront();
-		$.get("../php/controller.php", { "op": "loadproduct","prod_id":id },
-   			function(data){
-     			   			
-     			$('#productImage').attr("src","customAPP/data/img/"+data.front_img); 
+		data = DB.products[id];
+	if (!productData.price) productData.price = 0;					
+		$('#productImage').attr("src","../data/img/"+data.front_img); 
 
-				console.log("precio producto actual: "+productData.price);
-				console.log("precio producto que viene: "+data.price);
+		precio = precio - parseInt(productData.price) + parseInt(data.price);
+		console.log("lo que queda: "+precio);
+		refrescar_precio();
+		
+		productData = data;
 
-				precio = precio - parseInt(productData.price) + parseInt(data.price);
-				console.log("lo que queda: "+precio);
-				refrescar_precio();
-
-     			productData = data;
-     			//$('#front_img').html("<img width='50' src='customAPP/data/img/thumbs/"+data.front_img+"'>");
-     			//$('#back_img').html("<img width='50' src='customAPP/data/img/thumbs/"+data.back_img+"'>"); 		
-
-   				$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
-				$('#td_descriptionProduct').html(productData.descriptionProduct);
-
-     		
-     		}, "json");
-
-
+		$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
+		$('#td_descriptionProduct').html(productData.descriptionProduct);
+		
 }
 
 
@@ -516,46 +441,26 @@ function loadcomboSubcategoria(item){
 					else $('#comboSubCategoria').append( $('<option></option>').val(data[i].id).html(data[i].subCategory));
 
    				  }
-				  if (i >= data.length)refreshProducts(document.getElementById('comboSubCategoria')); 				  	
+				  if (i >= data.length)refreshProducts(); 				  	
 
      		}, "json");     		 
 }
 		
-function refreshProducts(item){
+function refreshProducts(item){	
+	loading();
+	var subcatId = getValue(document.getElementById('comboSubCategoria'));
+	for (i=0;i< DB.products.length;i++){
+		product = DB.products[i];
+		
+		if (product.subcategory == subcatId){
+			$('#productThumbs img[productid='+subcatId+']').show();
+		}
 	
-		loading();
-	var id = getValue(item);
+	
+	}
 
-		$.get("customAPP/php/controller.php", { "op": "loadProductsSubCategory","subcat_id":id },
-   			function(data){
-     			
-     			 //  2pm
-     			
-     			if (data == null || data == 'null'){
-     				$('#productThumbs').html("").append("<b>No hay productos</b>");
-     				numProducts = 0;
-     			} else {
-     			//console.info(data);
-	     			$('#productThumbs').html("");
-    				for (i = 0;i < data.length;i++)				
-     				$('#productThumbs').append('<img src="customAPP/data/img/thumbs/'+data[i].front_img+'" productid="'+data[i].id+'">');
-     			
-	     			numProducts = data.length;
-					
-						$('#productThumbs img').click(function(){
-					aux = $(this).attr('productid');
-					loadProduct(aux);
-				});
-	
-				$('#productThumbs img').mouseenter(function(){
-					$(this).css("cursor","pointer");	
-					$(this).css("cursor","hand");
-				});
-				
-     			}
-     			productsNavigator();
-     				
-          		}, "json");
+	productsNavigator();
+          		
 }
 
 
@@ -644,13 +549,8 @@ var z = document.formdatosenvio;
 	} else return false;
 }
 
-function show_help(issue){
-	
-	$('#helper #title').html(help_titles[issue]);
-	$('#helper #text').html(help_texts[issue]);
-	$('#helper').modal('toggle')
-	
-}
+
+/*
 
 function close_help(){
 	var aux = $('#helper').css("display");
@@ -658,6 +558,7 @@ function close_help(){
 		$('#helper').fadeOut();
 	}
 }
+*/
 
 /* UI GLOBAL 
 ------------------------------------------*/
@@ -673,6 +574,16 @@ $('#productImg').mousedown(function(e){
 
 $(idjquery).click(function(){ 	setCurrentObject($(this)); });
 
+$('#productThumbs img').live('click',function(){
+	aux = $(this).attr('productid');
+	loadProduct(aux);
+});
+
+$('#productThumbs img').mouseenter(function(){
+	$(this).css("cursor","pointer");	
+	$(this).css("cursor","hand");
+});
+					
 
 
 /* UI Buttons 
@@ -718,6 +629,14 @@ $(idjquery).click(function(){ 	setCurrentObject($(this)); });
 	$('#comboCategoria').change(function(){ loadcomboSubcategoria(this); });
 	$('#comboSubcategoria').change(function(){ refreshProducts(this); });
 	
+	$('.help_link').live('click',function(e){
+	e.preventDefault();
+		issue = $(this).attr("id");
+		$('#helper #title').html(help_titles[issue]);
+		$('#helper #text').html(help_texts[issue]);
+		$('#helper').modal('toggle')
+	});
+	
 	$('#fontfamily').change(function(){
 		item = this;
 		var aux = getValue(item);
@@ -733,6 +652,7 @@ $(idjquery).click(function(){ 	setCurrentObject($(this)); });
 		$('.text',currentObject).css("line-height",lineheightauto+'px');
 	});
 
+	/* AJAX FILE IMAGE UPLOAD */
 	$('#btnUpload').click(function(){
 		$("#loading")
 		.ajaxStart(function(){
@@ -752,26 +672,19 @@ $(idjquery).click(function(){ 	setCurrentObject($(this)); });
 				data:{name:'logan', id:'id'},
 				success: function (data, status)
 				{
-					
-						if(data.error != '')
-						{
-							alert(data.error);
-						}else
-						{ 
-							numCustomImages++;
+					if(data.error != '')
+					{
+						alert(data.error);
+					}else
+					{ 
+						numCustomImages++;
 						console.info("Image uploaded 100%");
 						console.info(encodeURI(data.filename));
-							createImageBox(encodeURI(data.filename),false);
-							
-								$('#uploadImage').hide(function(){
-									$('#textOptions').show();
-									});
-
-							//console.info(data);
-							//dragresize.apply(document);
-						
-						}
-					
+						createImageBox(encodeURI(data.filename),false);				
+						$('#uploadImage').hide(function(){
+							$('#textOptions').show();
+						});
+					}					
 				},
 				error: function (data, status, e)
 				{
@@ -779,9 +692,6 @@ $(idjquery).click(function(){ 	setCurrentObject($(this)); });
 				}
 			}
 		)
-		
 		return false;
-
-
 	});
 })();
