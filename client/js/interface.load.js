@@ -1,34 +1,3 @@
-/*
-	var dragresize = new DragResize('dragresize',
- { minWidth: 50, minHeight: 50, minLeft: 20, minTop: 20, maxLeft: 450, maxTop: 450 });
-		
-		dragresize.isElement = function(elm)
-{
- if (elm.className && elm.className.indexOf('drsElement') > -1) return true;
-};
-dragresize.isHandle = function(elm)
-{
- if (elm.className && elm.className.indexOf('drsMoveHandle') > -1) return true;
-};
-
-
-
-dragresize.ondragfocus = function() { };
-dragresize.ondragstart = function(isResize) { 
-
-	if (isResize){
-	
-		
-	}
-};
-dragresize.ondragmove = function(isResize) {};
-dragresize.ondragblur = function() { };
-*/
-
-//dragresize.apply(document);
-
-
-
 // GLOBAL VARS
 
 /* MADE FOR 2 VIEWS Back/Front */
@@ -63,7 +32,7 @@ $(document).ready(function(){
 	
 	loading();	
 	
-	$.get("../php/controller.php", { "op": "start" },
+	$.get("../config.json", { "op": "start" },
    			function(data){
      			
      			//console.log(data); //  2pm
@@ -77,10 +46,10 @@ $(document).ready(function(){
    					  	$('#comboSubCategoria').append( $('<option></option>').val(data.subcategorys[i].id).html(data.subcategorys[i].subCategory));
      			}		
      			for (i = 0;i < data.productsthumbs.length;i++)
-	     				$('#productThumbs').append('<img src="customAPP/data/img/thumbs/'+data.productsthumbs[i].front_img+'" productid="'+data.productsthumbs[i].id+'">');
+	     				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.productsthumbs[i].front_img+'" productid="'+data.productsthumbs[i].id+'">');
      			
      			for (i=0;i<data.designs.length;i++){
-     				$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="customAPP/data/img/thumbs/'+data.designs[i].img+'" ></a>');
+     				$('#designs .subwindow_content').append('	<a href="javascript:createImageBox(\''+data.designs[i].img+'\',true);"><img src="../data/img/thumbs/'+data.designs[i].img+'" ></a>');
      			}
 
      			refreshProducts(document.getElementById('comboCategoria'));
@@ -120,7 +89,7 @@ $(document).ready(function(){
 	     			numProducts = data.productsthumbs.length;
 	       			productData = data.product;
 	     			productsNavigator();
-					$('#productImage').attr("src","customAPP/data/img/"+data.product.front_img);    
+					$('#productImage').attr("src","../data/img/"+data.product.front_img);    
 	     			renderProductInfo();
 	     			precio = parseInt(data.product.price);
 					refrescar_precio();	

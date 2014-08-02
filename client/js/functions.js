@@ -376,7 +376,7 @@ function ajaxFileUploadBut()	{
 		$.ajaxFileUpload
 		(
 			{
-				url:'customAPP/js/AFU/doajaxfileupload.php',
+				url:'js/AFU/doajaxfileupload.php',
 				secureuri:false,
 				fileElementId:'fileToUpload',
 				dataType: 'json',
@@ -420,7 +420,7 @@ function renderProductInfo(){
 
 					
 	     			
-	     			$('#td_imgProduct').html("<img src='customAPP/data/img/"+productData.imgProduct+"'>");
+	     			$('#td_imgProduct').html("<img src='../data/img/"+productData.imgProduct+"'>");
 	     			$('#td_descriptionProduct').html(productData.descriptionProduct);
 	     			
 	     		//	$('#front_img').html("<img width='50' src='customAPP/data/img/thumbs/"+productData.front_img+"'>");
@@ -432,7 +432,7 @@ function loadProduct(id){
 		loading();
 		productView='front';
 		switchBackFront();
-		$.get("customAPP/php/controller.php", { "op": "loadproduct","prod_id":id },
+		$.get("../php/controller.php", { "op": "loadproduct","prod_id":id },
    			function(data){
      			   			
      			$('#productImage').attr("src","customAPP/data/img/"+data.front_img); 

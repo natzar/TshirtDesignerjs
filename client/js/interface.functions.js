@@ -49,7 +49,7 @@ Interface.Functions.js
 	$('#makepdf-btn').click(function(){
 		
 		var content_html = escape($('#custom').html());
-		window.location.href= 'customAPP/php/makepdf.php?html='+content_html;
+		window.location.href= '../php/makepdf.php?html='+content_html;
 	});
 	
 	

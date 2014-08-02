@@ -1,104 +1,84 @@
 <html>
 <head>
-	
-<!-- 	APP CUSTOM -->
-
-		<link href="../data/fonts/stylesheet.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-		<link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />		
-		<link href="css/master.css" rel="stylesheet" type="text/css" />		
-
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- 		Commom Librarys -->
-		<script src="js/jquery-1.7.2.min.js"></script>
-		<script src="js/jquery-ui-1.8.20.custom.min.js"></script>
-<!--
-		<script src="js/jQuery-ui-1.8.16/minified/jquery.ui.core.min.js"></script>
-		<script src="js/jQuery-ui-1.8.16/minified/jquery.ui.widget.min.js"></script>
-		<script src="js/jQuery-ui-1.8.16/minified/jquery.ui.mouse.min.js"></script>
-		<script src="js/jQuery-ui-1.8.16/minified/jquery.ui.draggable.min.js"></script>
-		<script src="js/jQuery-ui-1.8.16/minified/jquery.ui.resizable.min.js"></script>
--->
-
-		<script src="js/AFU/ajaxfileupload.js"></script>
-	<script src="js/jquery.autosize-min.js"></script>
-		<script src="admin/lib/bootstrap.min.js"></script>
- 		<script src="js/json2.js"></script>
-<!-- 		Interface load -->
-		<script src="js/interface.load.js"></script>
-		<script src="js/functions.js"></script>
+	<title>Awesome tshirt Shop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- 	CSS -->
+	<link href="../data/fonts/stylesheet.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery-ui-1.8.20.custom.css" rel="stylesheet" type="text/css" />		
+	<link href="css/master.css" rel="stylesheet" type="text/css" />		
 </head>
 <body>
-		<div id="loading" class="loading">Loading ...</div>
-		<div class="modal fade" id="helper" style="display:none;">
-			<div class="modal-header">
-			    <h3 id="title"></h3>
-			</div>
-			<div class="modal-body" id="text"> </div>
-			<div class="modal-footer">
-			    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-		  	</div>
+	<div id="loading" class="loading">Loading ...</div>
+	<div class="modal fade" id="helper" style="display:none;">
+		<div class="modal-header">
+		    <h3 id="title"></h3>
 		</div>
-		<div class="container" id="tshirtTool" >
-		<br>
-			<div class="row">
-				<div class="span12">
-					<div id="menu">
-						<div class="btn-group">
-												<div id="menu_productos" class="btn"><i class="icon-eye-open"></i> Seleccionar Producto</div>
-						<div id="menu_diseno" class="btn"><i class=" icon-book"></i> Seleccionar Diseño</div>
-
-						<a id="btn_new_textbox" class="btn"   href="javascript:createTextBox()"><i class="icon-font"></i> Textbox</a>
-						<a id="menu_foto" class="btn"  ><i class="icon-picture"></i> Imagen</a>
-						<a class="btn"  id="makepdf-btn"   ><i class="icon-plus-sign"></i> Make PDF</a>
-						</div>
-					</div>			
+		<div class="modal-body" id="text"> </div>
+		<div class="modal-footer">
+		    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+	  	</div>
+	</div>
+	<div class="container" id="tshirtTool" >
+	<br>
+		<div class="row">
+			<div class="span12">
+				<div id="menu">
+					<div class="btn-group">
+											<div id="menu_productos" class="btn"><i class="icon-eye-open"></i> Seleccionar Producto</div>
+					<div id="menu_diseno" class="btn"><i class=" icon-book"></i> Seleccionar Diseño</div>
+	
+					<a id="btn_new_textbox" class="btn"   href="javascript:createTextBox()"><i class="icon-font"></i> Textbox</a>
+					<a id="menu_foto" class="btn"  ><i class="icon-picture"></i> Imagen</a>
+					<a class="btn"  id="makepdf-btn"   ><i class="icon-plus-sign"></i> Make PDF</a>
+					</div>
+				</div>			
+			</div>
+		</div>
+	<br><br>
+		<div class="row" style="height:511px">
+			<div class="span3">
+				<div id="products" class="well">
+					<h3>Selecciona Producto</h3>
+					<div class="subwindow_content">
+						<select id="comboCategoria" onChange="loadcomboSubcategoria(this);" name="categoria"></select>
+						<select id="comboSubCategoria" onChange="refreshProducts(this);" name="subcategoria"> </select>
+						<hr>
+						<div id="productThumbs"></div>
+						<hr>
+						<div id="productsNavigator"></div>
+					</div>
+				</div>
+				<div id="designs" class="subwindow well" style="display:none;">	<h3>Selecciona Diseño</h3>
+					<div class="subwindow_content"></div>
 				</div>
 			</div>
-<br><br>
-			<div class="row" style="height:511px">
-				<div class="span3">
-					<div id="products" class="well">
-						<h3>Selecciona Producto</h3>
-						<div class="subwindow_content">
-							<select id="comboCategoria" onChange="loadcomboSubcategoria(this);" name="categoria"></select>
-							<select id="comboSubCategoria" onChange="refreshProducts(this);" name="subcategoria"> </select>
-							<hr>
-							<div id="productThumbs"></div>
-							<hr>
-							<div id="productsNavigator"></div>
-						</div>
-					</div>
-					<div id="designs" class="subwindow well" style="display:none;">	<h3>Selecciona Diseño</h3>
-						<div class="subwindow_content"></div>
-					</div>
-				</div>
-				<div class="span6" style="text-align:center;">
-					<div id="custom" >
-						<img id="productImage" onmousedown="this.focus();if (event.preventDefault) event.preventDefault();this.focus();" src="">
-						<div id="front_img" style="display:none;" class="vistaproduct btn btn-primary" ><i class="icon-arrow-left icon-white"></i> Delante</div>
-						<div id="back_img"  class="vistaproduct btn btn-primary" ><i class="icon-arrow-right icon-white"></i> Detrás</div>
-
-
-					</div>	
-				&nbsp;
+			<div class="span6" style="text-align:center;">
+				<div id="custom" >
+					<img id="productImage" onmousedown="this.focus();if (event.preventDefault) event.preventDefault();this.focus();" src="">
+					<div id="front_img" style="display:none;" class="vistaproduct btn btn-primary" ><i class="icon-arrow-left icon-white"></i> Delante</div>
+					<div id="back_img"  class="vistaproduct btn btn-primary" ><i class="icon-arrow-right icon-white"></i> Detrás</div>
+	
+	
 				</div>	
-				
-
-				<div class="span3">
-				
-					<div id="uploadImage" class="well " style="display:none;">
-						<h3>Upload Image</h3>
-						<div class="subwindow_content">
-							* Si dispones de la imagen vectorizada, ponte en contacto con nosotros.<br>
-							<form name="form2" action="" method="POST" enctype="multipart/form-data">
-							<input id="fileToUpload" type="file" size="20" name="fileToUpload" class="input"><br><br>
-							<btn class="btn btn-primary" id="btnUpload" onclick="return ajaxFileUploadBut();"><i class="icon-white icon-picture"></i> Upload</btn>
-							</form> 
-						</div>
-					</div>				
-					<div id="textOptions" class="well">
+			&nbsp;
+			</div>	
+			
+	
+			<div class="span3">
+			
+				<div id="uploadImage" class="well " style="display:none;">
+					<h3>Upload Image</h3>
+					<div class="subwindow_content">
+						* Si dispones de la imagen vectorizada, ponte en contacto con nosotros.<br>
+						<form name="form2" action="" method="POST" enctype="multipart/form-data">
+						<input id="fileToUpload" type="file" size="20" name="fileToUpload" class="input"><br><br>
+						<btn class="btn btn-primary" id="btnUpload" onclick="return ajaxFileUploadBut();"><i class="icon-white icon-picture"></i> Upload</btn>
+						</form> 
+					</div>
+				</div>				
+				<div id="textOptions" class="well">
 
 						<div class="subwindow_content">
 								        		<div class="btn-group">
@@ -202,7 +182,7 @@
 <hr> 
 <div class="row">
 	<div id="td_imgProduct" class="span3">
-		<img src="data/img/infoproduct.png">
+		<img src="../data/img/infoproduct.png">
 	</div>
 	<div class="span3" id="td_descriptionProduct">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -223,9 +203,17 @@
 <!-- FIN APP -->	
 
 
+	<!-- 		JS Librarys -->
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery-ui-1.8.20.custom.min.js"></script>
+	<script src="js/AFU/ajaxfileupload.js"></script>
+	<script src="js/jquery.autosize-min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/json2.js"></script>
 
-	
-	
+	<!-- 		Interface load -->
+	<script src="js/interface.load.js"></script>
+	<script src="js/functions.js"></script>
 	<script src="js/interface.functions.js" type="text/javascript"></script>
 	
 </body>
