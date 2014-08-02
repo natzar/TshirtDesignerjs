@@ -129,6 +129,6 @@
       "mailGetPedido":"contacto@phpninja.info",
       "precioTexto":"4",
       "minCantidadPedido":"1",
-      "maxCantidadPedido":"10"
+      "maxCantidadPedido":"2"
    }
 }

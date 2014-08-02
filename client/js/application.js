@@ -687,10 +687,11 @@ $(document).ready(function(){
 			  	$('#comboSubCategoria').append( $('<option category="'+key+'"></option>').val(subcategorys[i]).html(subcategorys[i]));
 			
 			}
-
-     			refreshProducts();
-     			loadProduct(0);
-				createTextBox();
+			
+			$('#comboSubCategoria')
+     		refreshProducts();
+     		loadProduct(0);
+			createTextBox();
 				
    		}, "json");   
    });
