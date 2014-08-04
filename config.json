@@ -62,8 +62,8 @@
       {  
          "id":"1",
          "titleProduct":"Nota!",
-         "category":"0",
-         "subcategory":"1",
+         "category":"bañador",
+         "subcategory":"largo",
          "front_img":"delante2.png",
          "back_img":"detras2.png",
          "imgProduct":"687_giqsxw.jpeg",
@@ -86,7 +86,7 @@
       {  
          "id":"3",
          "titleProduct":"Camiseta gris",
-         "category":"camisas",
+         "category":"bañador",
          "subcategory":"hombre",
          "front_img":"delante4.png",
          "back_img":"detras4.png",
@@ -110,8 +110,8 @@
       {  
          "id":"6",
          "titleProduct":"sd",
-         "category":"0",
-         "subcategory":"1",
+         "category":"bañador",
+         "subcategory":"largo",
          "front_img":"captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51d64wimn.png",
          "back_img":"captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51i5te6a9.png",
          "imgProduct":"captura_de_pantalla_2012-05-02_a_las_17.38.37_2012-02-05-08-40-51as4yldh.png",

@@ -1,3 +1,12 @@
+body{
+background:#e7e7e7;
+background-repeat: repeat;
+background-size:200;
+}
+#tshirtTool{
+background: white;
+padding-left:15px;
+padding-right:15px;}
 #productImage{
 height: 440px;
 }
@@ -22,7 +31,7 @@ width: 100%;
 .vistaProduct {
 position: absolute;
 top:0px;
-right:0px;
+left:0px;
 
 }
 .text{
@@ -178,3 +187,9 @@ input, select, .uneditable-input
 }
 
 #productThumbs img{cursor:pointer;cursor:hand;}
+
+.product_thumb_img{
+overflow: hidden;
+width:64px;height:64px;margin:2px;display:inline-block;
+padding:2px; border:1px solid #e8e8e8;
+}

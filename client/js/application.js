@@ -294,7 +294,8 @@ function loadProduct(id){
 		data = DB.products[id];
 		if (!productData.price) productData.price = 0;					
 		$('#productImage').attr("src","../data/img/"+data.front_img); 
-
+		if(!productData.back_img) $('#front_img').hide();
+		else $('#front_img').show();
 		precio = precio - parseInt(productData.price) + parseInt(data.price);
 		console.log("lo que queda: "+precio);
 		refrescar_precio();
@@ -359,40 +360,38 @@ function switchBackFront(){
 	}
 }
 
-function loadcomboSubcategoria(item){
-	loading();
+function loadcomboSubcategoria(){
+
+	item = document.getElementById('comboCategoria');
 		var aux = getValue(item);
-		//console.info(aux);
-		$.get("customAPP/php/controller.php", { "op": "loadComboSubcategorys","cat_id":aux },
-   			function(data){
-     			 $('#comboSubCategoria').html("");
-     			//console.info(data); //  2pm
-     			var i = 0;
-     			for (i = 0;i < data.length;i++)				{
-   				  	if (i == 0) $('#comboSubCategoria').append( $('<option selected="selected"></option>').val(data[i].id).html(data[i].subCategory));
-					else $('#comboSubCategoria').append( $('<option></option>').val(data[i].id).html(data[i].subCategory));
+		$('#comboSubCategoria').html("");
+     	data = DB.categorys[aux];
+		var i = 0;
+		for (i = 0;i < data.length;i++)				{
+		  	if (i == 0) $('#comboSubCategoria').append( $('<option selected="selected"></option>').val(data[i]).html(data[i]));
+			else $('#comboSubCategoria').append( $('<option></option>').val(data[i]).html(data[i]));
+	
+		  }
+	 	 refreshProducts(); 				  	
 
-   				  }
-				  if (i >= data.length)refreshProducts(); 				  	
 
-     		}, "json");     		 
 }
 		
-function refreshProducts(item){	
-	loading();
+function refreshProducts(){	
+	//loading();
+	$('#productThumbs').html('');
 	var subcatId = getValue(document.getElementById('comboSubCategoria'));
+	console.log(subcatId);
 	for (i=0;i< DB.products.length;i++){
 		product = DB.products[i];
-		
+		//console.log(product);
+		console.log(product.subcategory);
 		if (product.subcategory == subcatId){
-			$('#productThumbs img[subcategory='+subcatId+']').show();
+			//$('#productThumbs img[subcategory='+subcatId+']').show();
+			$('#productThumbs').append('<div class="product_thumb_img"><img src="../data/img/thumbs/'+product.front_img+'" productid="'+i+'" subcategory="'+product.subcategory+'" ></div>');
 		}
-	
-	
 	}
-
-	productsNavigator();
-          		
+	productsNavigator();     		
 }
 
 
@@ -555,7 +554,7 @@ $('#productThumbs img').live('click',function(){
 	
 	$('#btn_new_textbox').click(function(){ createTextBox(); });  	
 	$('#comboCategoria').change(function(){ loadcomboSubcategoria(this); });
-	$('#comboSubcategoria').change(function(){ refreshProducts(this); });
+	$('#comboSubCategoria').change(function(){ refreshProducts(this); });
 	
 	$('.help_link').live('click',function(e){
 	e.preventDefault();
@@ -645,7 +644,7 @@ $(document).ready(function(){
    					DB.categorys[product.category].push(product.subcategory);
 //   					DB.categorys[DB.categorys.length -1].subcategorys.push({product.subcategory);
    				}   			
-  				$('#productThumbs').append('<img src="../data/img/thumbs/'+data.products[i].front_img+'" productid="'+i+'" subcategory="'+product.subcategory+'" style="display:none">');
+  				
      		}			
 
      		generaloptions = data.options;	
@@ -682,14 +681,8 @@ $(document).ready(function(){
 			for(var key in DB.categorys) {
 			    subcategorys = DB.categorys[key];
 				$('#comboCategoria').append( $('<option></option>').val(key).html(key));
-
-				for (i = 0;i < subcategorys.length;i++)				
-			  	$('#comboSubCategoria').append( $('<option category="'+key+'"></option>').val(subcategorys[i]).html(subcategorys[i]));
-			
 			}
-			
-			$('#comboSubCategoria')
-     		refreshProducts();
+			loadcomboSubcategoria();
      		loadProduct(0);
 			createTextBox();
 				

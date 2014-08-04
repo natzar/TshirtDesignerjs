@@ -35,8 +35,8 @@
 		<br><br>
 		<div class="row" style="height:511px">
 			<div class="span3">
-				<div id="products" class="well">
-					<h3>Selecciona Producto</h3>
+				<div id="products" class="">
+				<!-- 	<h3>Selecciona Producto</h3> -->
 					<div class="subwindow_content">
 						<select id="comboCategoria"  name="categoria"></select>
 						<select id="comboSubCategoria"  name="subcategoria"> </select>
@@ -46,7 +46,7 @@
 						<div id="productsNavigator"></div>
 					</div>
 				</div>
-				<div id="designs" class="subwindow well" style="display:none;">	<h3>Selecciona Diseño</h3>
+				<div id="designs" class="subwindow " style="display:none;">	<h3>Selecciona Diseño</h3>
 					<div class="subwindow_content"></div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				&nbsp;
 			</div>		
 			<div class="span3">			
-				<div id="uploadImage" class="well " style="display:none;">
+				<div id="uploadImage" class=" " style="display:none;">
 					<h3>Upload Image</h3>
 					<div class="subwindow_content">
 						* Si dispones de la imagen vectorizada, ponte en contacto con nosotros.<br>
@@ -69,7 +69,7 @@
 						</form> 
 					</div>
 				</div>				
-				<div id="textOptions" class="well">
+				<div id="textOptions" class="">
 					<div class="subwindow_content">
 					  <div class="btn-group">
 					  <button class="btn btn-small"><i class=" icon-tint"></i> Color</button>
@@ -118,11 +118,16 @@
 			        </div>		
 				</div>
 			</div>
-			<div id="checkout" class="well">
+			<hr>
+			<div id="checkout" class="">
 				<div class="subwindow_content">
 					<form name="form1" style="margin:0px;" method="post" action="php/controller.php">
-						<div id="precio" class="inline"> 0 € </div><small>Impuestos incluídos</small> 
+						<div id="precio" class="inline"> 0 € </div><br>
+						<small>Impuestos incluídos</small> 
 						<br><br>
+												Cantidad: <select name="cantidad" id="cantidad" onchange=""></select><br> 	
+
+
 						<div class="btn-group">
 							<div id="talla_S" class="btn talla"><a href="javascript:setTalla('S');">S</a></div>
 							<div id="talla_M" class="btn talla"><a href="javascript:setTalla('M');">M</a></div> 		
@@ -130,7 +135,6 @@
 							<div id="talla_XL" class="btn talla"><a href="javascript:setTalla('XL');">XL</a></div>
 							<a class="btn btn-success" id="btn_comprar"><i class=" icon-shopping-cart icon-white"></i> Comprar</a>
 						</div>
-						Cantidad: <select name="cantidad" id="cantidad" onchange=""></select><br> 	
 						<input type="hidden" name="jsona" id="jsona" value="">
 						<input type="hidden" name="jsonb" id="jsonb" value="">
 						<input type="hidden" name="op" id="op" value="">
