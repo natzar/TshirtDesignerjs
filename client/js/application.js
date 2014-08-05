@@ -311,12 +311,14 @@ function loadProduct(id){
 
 
 function productsNavigator(){
+/*
 	if (numProducts > maxProductsPage){
 		var number_pages = numProducts / 6;
 		$('#productsNavigator').html("1 / "+number_pages+ " Next >>");		
 	} else {
-		$('#productsNavigator').html(numProducts+' / '+numProducts);
+		$('#productsNavigator').html((numProducts+1)+' / '+numProducts);
 	}
+*/
 }
 
 function loadProductBackImg(){
@@ -599,11 +601,11 @@ $('#productThumbs img').live('click',function(){
 		$.ajaxFileUpload
 		(
 			{
-				url:'js/AFU/doajaxfileupload.php',
+				url:'../php/doajaxfileupload.php',
 				secureuri:false,
 				fileElementId:'fileToUpload',
 				dataType: 'json',
-				data:{name:'logan', id:'id'},
+				//data:{name:'logan', id:'id'},
 				success: function (data, status)
 				{
 					if(data.error != '')

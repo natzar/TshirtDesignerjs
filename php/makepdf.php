@@ -1,6 +1,6 @@
 <?php
 //$tmpfile = tempnam("/home/utopic/phpninja.info/tshirts/customAPP/php/dompdf/tmp", "dompdf_");
-require '../vendor/autoload.php';
+//require '../vendor/autoload.php';
 define('DOMPDF_ENABLE_AUTOLOAD', false);
 require_once(dirname(__FILE__)."/dompdf/dompdf_config.inc.php");
 
