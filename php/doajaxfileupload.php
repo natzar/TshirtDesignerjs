@@ -1,4 +1,5 @@
 <?php
+echo getcwd();
 	$error = "";
 	$msg = "";
 	$filename = "";
@@ -37,7 +38,7 @@
 	}elseif(empty($_FILES['fileToUpload']['tmp_name']) || $_FILES['fileToUpload']['tmp_name'] == 'none')
 	{
 		$error = 'No file was uploaded..';
-	}else if (copy($_FILES['fileToUpload']['tmp_name'],"../../data/tempx/".$_FILES['fileToUpload']['name']) )
+	}else if (copy($_FILES['fileToUpload']['tmp_name'],dirname(__FILE__)."/../../../data/tempx/".$_FILES['fileToUpload']['name']) )
 	{
 		//	$error = 0;
 			$msg .= " File Name: " . $_FILES['fileToUpload']['name'] . ", ";

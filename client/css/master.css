@@ -190,6 +190,6 @@ input, select, .uneditable-input
 
 .product_thumb_img{
 overflow: hidden;
-width:64px;height:64px;margin:2px;display:inline-block;
+width:63px;height:64px;margin:2px;display:inline-block;
 padding:2px; border:1px solid #e8e8e8;
 }
